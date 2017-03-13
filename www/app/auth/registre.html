@@ -1,0 +1,41 @@
+<ion-view>
+     <ion-content overflow-scroll="true" style="padding: 20px;" class="center degrade-birrias">
+        <div class="spacer" style="height: 20px;"></div>
+        <img class="full-image center" ng-src="img/logo.png" style="width:80%; margin: 0">
+            <div class="list list-inset" style="background-color: transparent;">
+                <form name="formRegistre">
+                <label class="item item-input box-text-auth">
+                    <i class="icon ion-at placeholder-icon"></i>
+                    <input type="email" name="usuario" class="box-text-auth" placeholder="CORREO" ng-model="vm.usuario.email" ng-required="true" >
+                </label>
+                  <div class="spacer" style="height:10px;"></div>
+                 <label class="item item-input box-text-auth">
+                    <i class="icon ion-ios-locked placeholder-icon"></i>
+                    <input type="password" name="clave" class="box-text-auth" placeholder="CONTRASEÑA" ng-model="vm.usuario.clave" ng-required="true" >
+                </label>
+                   <div class="spacer" style="height:10px;"></div>
+                 <label class="item item-input box-text-auth">
+                    <i class="icon ion-ios-person placeholder-icon"></i>
+                    <input type="text" name="nombres" class="box-text-auth" placeholder="NOMBRES" ng-model="vm.usuario.nombres" ng-required="true" >
+                </label>
+                    <div class="spacer" style="height:10px;"></div>
+                    <label class="item item-input box-text-auth">
+                    <i class="icon ion-ios-person placeholder-icon"></i>
+                    <input type="text" name="apellidos" class="box-text-auth" placeholder="APELLIDOS" ng-model="vm.usuario.apellidos" ng-required="true" >
+                </label>
+                    <div class="spacer" style="height:10px;"></div>
+                     <label class="item item-input box-text-auth">
+                    <i class="icon ion-android-phone-portrait placeholder-icon"></i>
+                    <input type="number" name="telefono" class="box-text-auth" placeholder="TELEFONO" ng-model="vm.usuario.telefono" ng-required="true" >
+                </label>
+                    <div class="spacer" style="height:10px;"></div>
+
+                <button class="button button-block btn btn-red "
+                        ng-click="vm.registrarUsuario()">
+                    Registrarme
+                </button>
+                <br>
+                  </form>
+            </div>
+    </ion-content>
+</ion-view>
