@@ -17,15 +17,18 @@
               autenticate();
             });
             function autenticate(){
-               if(!authService.currentUser()) {
+              if(!authService.currentUser()) {
                    authService.autologin().then(function (res) {
                        hideSplash();
                        if (res) {
+      
                        }else{
                            $state.go('login');
                        }
                    })
                }
+               
+                
             }
             function hideSplash() {
                 if(navigator.splashscreen){

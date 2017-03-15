@@ -6,12 +6,10 @@
         .controller('MenuCtrl', MenuCtrl);
 
     /* @ngInject */
-    function MenuCtrl(authService,$scope,$ionicPopover,$ionicLoading,$state) {
+    function MenuCtrl(authService,$scope,$ionicPopover) {
         var vm = this;
         vm.logout = authService.logout;
         
-        
-  
         $ionicPopover.fromTemplateUrl('my-popover.html', {
                     scope: $scope
             }).then(function(popover) {

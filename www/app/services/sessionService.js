@@ -11,8 +11,9 @@
         var service = {
             isLoggedIn: isLoggedIn,
             getIdUser: getIdUser,
-            getIdSitio: getIdSitio,
+            getUser: getUser,
             getToken : getToken,
+            getIdCliente:getIdCliente
             
         };
         return service;
@@ -32,15 +33,18 @@
                 var data = JSON.parse(localStorage.getItem('data'));
                 return data.idUsuario;
            } 
-          
         }
-        function getIdSitio(){
+        function getIdCliente(){
            if(localStorage.getItem('data') !== null){
-               var data = JSON.parse(localStorage.getItem('data'));
-                return data.idSitio;
-               
+                var data = JSON.parse(localStorage.getItem('data'));
+                return data.id;
            } 
-          
+        }
+         function getUser(){
+           if(localStorage.getItem('data') !== null){
+                var data = JSON.parse(localStorage.getItem('data'));
+                return data;
+           } 
         }
     }
 })();

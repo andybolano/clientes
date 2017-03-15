@@ -3,7 +3,7 @@
   var app =  angular.module("app", [
             'ionic',
             'auth',
-            'perfil',
+            'perfil'
         ]);
 
 app.config(function($ionicConfigProvider) {
@@ -40,8 +40,8 @@ app.directive('countUp', ['$compile',function($compile,$timeout) {
             timeloop();
         }]
     }}]);
-    
-    app.directive('angRoundProgress', [function () {
+   
+   app.directive('angRoundProgress', [function () {
   var compilationFunction = function (templateElement, templateAttributes, transclude) {
     if (templateElement.length === 1) {
       var node = templateElement[0];
@@ -96,10 +96,7 @@ app.directive('countUp', ['$compile',function($compile,$timeout) {
             ctx.strokeStyle = outerCircleForegroundColor;
             ctx.stroke();
 
-          }, true);
-          
-         
-             
+          }, true);  
         },
         post: function postLink(scope, instanceElement, instanceAttributes, controller) {}
       };

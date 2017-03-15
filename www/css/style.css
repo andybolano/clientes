@@ -88,7 +88,6 @@
 .button.activated.btn-red{
    color:#FFF;
    background-color: #d02828;
-
 }
 
 .btn-blue{
@@ -118,7 +117,7 @@ h5{
     font-family: 'fg-demi-cond';
     font-size: 1.3em;
 }
-
+/*
 .loading-container{
   -webkit-align-items: flex-start;
   -moz-align-items: flex-start;
@@ -128,7 +127,7 @@ h5{
   .loading{
 	border-radius: 50px;
   }
-
+*/
 .bg{
 background-color: #2A3B39;
 background-position: center center;
@@ -284,7 +283,7 @@ p{
 }
 
 /****popover***/
-.platform-ios .popover{
+.platform-android4_2 .popover{
     margin-top: 0;
     background-color:#e24243;
 }
@@ -368,4 +367,39 @@ p{
 /**money**/ 
 .l{
     color:#43a047 !important;
+}
+
+.popup-title {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    color:#FFF;
+     font-family: 'Quick-bold';
+}
+.popup-head {
+    padding: 15px 10px;
+    border-bottom:0;
+    text-align: center;
+    background-color: #c62828;
+}
+.popup-body {
+    padding: 10px;
+    overflow: auto;
+    color:#FFF;
+    border-radius: 5px;
+    font-family: 'Quick-regular';
+    text-align: center;
+}
+.popup-container .popup {
+    width: 250px;
+    max-width: 100%;
+    max-height: 90%;
+    background-color: #d32f2f;
+}
+
+.popup-buttons .button.button-positive {
+    border-color: transparent;
+    background-color: #b71c1c;
+    color: #fff;
+   font-family: 'Quick-bold';
 }

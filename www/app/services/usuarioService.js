@@ -2,11 +2,11 @@
     'use strict';
 
     angular
-        .module('perfil')
-        .service('perfilService', perfilService);
+        .module('app')
+        .service('usuarioService', usuarioService);
 
     /* @ngInject */
-    function perfilService($http, API_URL) {
+    function usuarioService($http, API_URL) {
         
          var service = {
             getUsuario:getUsuario

@@ -16,10 +16,5 @@
                 templateUrl: 'app/layout/layout.html',
                 controller: 'MenuCtrl'
             });
-        // if none of the above states are matched, use this as the fallback
-        // $urlRouterProvider.otherwise( function($injector) {
-        //     var $state = $injector.get("$state");
-        //     $state.go(HOME);
-        // });
     }
 })();

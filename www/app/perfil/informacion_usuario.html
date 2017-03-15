@@ -8,7 +8,7 @@
                         <div class="content-circle circle">
                             <img ng-src="img/default.png" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="img">
                         </div>
-                        <p class="name_user">{{Usuario.nombre}}<br>{{Usuario.apellido}}</p>
+                        <p class="name_user">{{vm.Usuario.nombres}}<br>{{vm.Usuario.apellidos}}</p>
                 </div>
             </div>
        </div>
@@ -22,9 +22,9 @@
                    <div class="box-transparent">
                    <table width="100%" border="0">
                       <tr>
-                          <td><span class="num-big"><count-up count-to="0" interval="50"></count-up></span></td>
-                          <td><span class="num-big"><count-up count-to="0" interval="50"></count-up></span></span></td>
-                          <td><span class="num-big"><count-up count-to="0" interval="50"></count-up></span></span></td>
+                          <td><span class="num-big"><count-up count-to="vm.Usuario.cumplidas" interval="50"></count-up></span></td>
+                          <td><span class="num-big"><count-up count-to="vm.Usuario.canceladas" interval="50"></count-up></span></span></td>
+                          <td><span class="num-big"><count-up count-to="vm.Usuario.incumplidas" interval="50"></count-up></span></span></td>
                       </tr>
                       <tr>
                           <td><p>CUMPLIDAS</p></td>
@@ -41,8 +41,7 @@
             
         </div>
             <div class="col col-80">
-               <button class="button button-block btn btn-red "
-                        ng-click="vm.iniciarSesion()">
+               <button class="button button-block btn btn-red " ng-click="vm.buscarCanchas()">
                     BUSCAR CANCHAS
                 </button>
            </div>
