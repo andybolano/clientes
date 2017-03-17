@@ -16,12 +16,11 @@
             .module('perfil')
             .controller('perfilCtrl', usuarioCtrl);
     /* @ngInject */
-    function usuarioCtrl($scope, $state, sessionService, $ionicTabsDelegate) {
+    function usuarioCtrl($scope,sessionService, $ionicTabsDelegate) {
          var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.Usuario = {};
             vm.loadPerfil = loadPerfil;
-            vm.buscarCanchas = buscarCanchas;
             $scope.data = {};
             loadPerfil();
         });
@@ -59,9 +58,7 @@
                 i = i + 1;
             }, 20);
         };
-        function buscarCanchas(){
-            alert();
-        };
+       
 
     }
 })();

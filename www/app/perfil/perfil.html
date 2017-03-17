@@ -1,5 +1,17 @@
 <ion-view title="Birrias">
-   
+   <ion-nav-bar class="degrade-birrias">
+            <ion-nav-buttons>
+                <img ng-src="img/logo_min.png" style="width:28px; height: 28px;margin-top: 3px;">
+            </ion-nav-buttons>
+            <ion-nav-title>
+                Birrias
+            </ion-nav-title>
+            <ion-nav-buttons side="right">
+                <a href="javascript:;" class="btn-menu" ng-click="openPopover($event)">
+                    <i class="ion-ios-more"></i>
+               </a>
+             </ion-nav-buttons>
+        </ion-nav-bar> 
  <ion-tabs class="tabs-transparent tabs-icon-top">
   <ion-tab title="PERFIL" icon-on="ion-ios-person" icon-off="ion-ios-person">
     <ion-view class="bg">
@@ -7,21 +19,20 @@
     </ion-view>
   </ion-tab>
 
-  <ion-tab title="PENDIENTES" icon-on="icon-hour-glass" icon-off="icon-hour-glass">
+  <ion-tab title="PENDIENTES" icon-on="ico pendientes-active" icon-off="ico pendientes-disabled">
     <ion-view class="bg">
         <div ng-include src="'app/perfil/reservas_pendientes.html'"></div>
     </ion-view>
   </ion-tab>
 
-  <ion-tab title="HISTORIAL" icon-on="icon-history" icon-off="icon-history">
+  <ion-tab title="HISTORIAL" icon-on="ico history-active" icon-off="ico history-disabled">
      <ion-view class="bg">
         <div ng-include src="'app/perfil/historial_reservas.html'"></div>
     </ion-view>
   </ion-tab>
 
 </ion-tabs>
-    
-    <ion-content overflow-scroll="true" class="center bg">
+    <ion-content overflow-scroll="true" class="center bg has-subheader">
 
     </ion-content>
 </ion-view>    

@@ -1,0 +1,58 @@
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.tab-item .ico {
+   line-height:20px;
+}
+
+.sitio-active:before {
+  content:url("icons/stadium-active.svg");  
+}
+.sitio-disabled:before {
+  content:url("icons/stadium-disabled.svg");  
+}
+.cancha-active:before {
+  content:url("icons/cancha-active.svg");  
+}
+.cancha-disabled:before {
+  content:url("icons/cancha-disabled.svg");   
+}
+.calendar-active:before {
+  content:url("icons/calendar-active.svg");  
+}
+.calendar-disabled:before {
+  content:url("icons/calendar-disabled.svg");   
+}
+.history-active:before {
+  content:url("icons/history-active.svg");  
+}
+.history-disabled:before {
+  content:url("icons/history-disabled.svg");   
+}
+.pendientes-active:before {
+  content:url("icons/pendientes-active.svg");  
+}
+.pendientes-disabled:before {
+  
+ content:url("icons/pendientes-disabled.svg");   
+} 
+
+
+/*
+active #e24243;
+disabled #566362
+
+*/

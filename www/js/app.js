@@ -3,7 +3,8 @@
   var app =  angular.module("app", [
             'ionic',
             'auth',
-            'perfil'
+            'perfil',
+            'reserva',
         ]);
 
 app.config(function($ionicConfigProvider) {
