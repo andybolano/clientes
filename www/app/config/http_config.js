@@ -3,7 +3,7 @@
     angular
         .module('app')
         .config(config)
-   .constant('API_URL', 'http://localhost/birrias/birrias/api/public/index.php/api');
+   .constant('API_URL', 'http://localhost/birrias/api/public/index.php/api');
          // .constant('API_URL', 'https://birriassoccer.com/public/api');
             function config($httpProvider){  
              $httpProvider.interceptors.push('Request');

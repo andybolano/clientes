@@ -19,12 +19,11 @@
     </ion-view>
   </ion-tab>
 
-  <ion-tab title="PENDIENTES" icon-on="ico pendientes-active" icon-off="ico pendientes-disabled">
+     <ion-tab title="PENDIENTES <span class='notificacion'>{{vm.reservasPendientes.length}}</span>" icon-on="ico pendientes-active" icon-off="ico pendientes-disabled" >
     <ion-view class="bg">
         <div ng-include src="'app/perfil/reservas_pendientes.html'"></div>
     </ion-view>
   </ion-tab>
-
   <ion-tab title="HISTORIAL" icon-on="ico history-active" icon-off="ico history-disabled">
      <ion-view class="bg">
         <div ng-include src="'app/perfil/historial_reservas.html'"></div>

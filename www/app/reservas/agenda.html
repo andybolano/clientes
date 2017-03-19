@@ -2,14 +2,14 @@
      <a class="item item-icon-left reserva " href="javascript:;" style="background-color: transparent;border:none;height:48px;">
          <div class="row">
              <div class="col">
-                 <img src="img/profile-sitio.png" ng-if="vm.Sitio.image === 0" style="width:40px;height: 40px;" class="icon">
-                <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image === 1" style="width:40px;height: 40px;" class="icon">
-                <p style="margin-left: 46px;margin-top:-10px;">{{vm.Sitio.nombre}}</p>
+                 <img src="img/profile-sitio.png" ng-if="vm.Sitio.image === 0" style="width:36px;height: 36px;" class="icon">
+                <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image === 1" style="width:36px;height: 36px;" class="icon">
+                <p style="margin-left: 36px;margin-top:-10px;">{{vm.Sitio.nombre}}</p>
              </div>
              <div class="col">
-                  <img src="img/profile-cancha.png" ng-if="vm.Cancha.image === 0" style="width:40px;height: 40px;margin-left:50%" class="icon">
-                  <img src="{{vm.Cancha.ruta}}" ng-if="vm.Cancha.image === 1" style="width:40px;height: 40px;margin-left:50%" class="icon">
-                  <p style="margin-left:50px;margin-top:-10px;">{{vm.Cancha.nombre}}</p>
+                  <img src="img/profile-cancha.png" ng-if="vm.Cancha.image === 0" style="width:36px;height: 36px;margin-left:50%" class="icon">
+                  <img src="{{vm.Cancha.ruta}}" ng-if="vm.Cancha.image === 1" style="width:36px;height: 36px;margin-left:50%" class="icon">
+                  <p style="margin-top:-10px;margin-left:44px;">{{vm.Cancha.nombre}}</p>
              </div>    
          </div>
     </a>
@@ -27,10 +27,10 @@
             <a class="button button-icon button-positive icon ion-ios-arrow-right" style="padding-top: 0" ng-click="vm.moveToFecha('+')"></a>
         </div>
     </div>
-
-    <ul style="width:80%;margin-left:10%;">
-        <li ng-repeat="item in vm.horas" id="{{item}}-{{vm.converToFecha(vm.fecha)}}"  class="hora">
-           <a href="javascript:;" ng-click="vm.reservar(item);" >
+  
+    <ul style="height:{{vm.altoAgenda}}px;overflow-y: auto" class="listAgenda">
+        <li ng-repeat="item in vm.horas" id="{{item}}" class="hora"> 
+           <a href="javascript:;" ng-click="vm.reservar(item);"  ng-if="vm.comprobarReservada(item) === false" class="disponible" >
             <div class="row">
                 <div class="col col-40">
                     {{item}}:00
@@ -40,6 +40,16 @@
                 </div>
             </div>
             </a>
+           <a href="javascript:;"  ng-if="vm.comprobarReservada(item) === true" class="reservada">
+            <div class="row">
+                <div class="col col-40">
+                    {{item}}:00
+                </div>
+                <div class="col col-60" style="text-align: left">
+                    RESERVADA
+                </div>
+            </div>
+            </a> 
         </li>
     </ul>
 

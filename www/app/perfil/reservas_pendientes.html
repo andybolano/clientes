@@ -1,18 +1,18 @@
 <ion-content ng-class="transition" class="center" on-swipe-right="goBack()" on-swipe-left="goForward()">
   <div class="list">
-    <a class="item item-thumbnail-left reserva" href="#">
+    <a class="item item-thumbnail-left reserva" href="javascript:;" ng-repeat="item in vm.reservasPendientes">
         <table style="width: 100%">
             <tr>
                 <td width="60%">
-                    <h3>BIBLOS - CANCHA 1</h3>
-                    <p><i class="ion-android-calendar" style="font-size:18px;"></i> 01/12/2016 - <i class="ion-android-time" style="font-size:18px;"></i> 20:00</p>
+                    <h3>{{item.nombreSitio}} - {{item.nombreCancha}}</h3>
+                    <p><i class="ion-android-calendar" style="font-size:18px;"></i> {{item.fecha}} - <i class="ion-android-time" style="font-size:18px;"></i> {{item.hora}}:00</p>
                     <button class="btn-secundary cancelar">CANCELAR</button>
                 </td>
                 <td style="text-align: right">
-                    <a href="#" class="estado er">ESPERANDO REVISIÓN</a>
-                    <span class="money">V: $60.000</span>
-                    <span class="money">A: $20.000</span>
-                   <span class="money l">L: $0</span>
+                    <a href="javascript:;" class="estado er">{{item.estado}}</a>
+                    <span class="money">V: {{item.precio | currency:undefined:0}}</span>
+                    <span class="money">A: {{item.abonoRequerido | currency:undefined:0}}</span>
+                   <span class="money l">L: {{item.abonoLiquidado | currency:undefined:0}}</span>
                 </td>
             </tr>
 

@@ -1,9 +1,10 @@
 <ion-content ng-class="transition"  on-swipe-right="goBack()" on-swipe-left="goForward()">   
   <a class="item item-icon-left reserva" href="javascript:;" style="background-color: transparent;border:none;height:48px;">
-         <img src="img/profile-sitio.png" ng-if="vm.Sitio.image === 0" style="width:40px;height: 40px;" class="icon">
-       <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image === 1" style="width:40px;height: 40px;" class="icon">
+         <img src="img/profile-sitio.png" ng-if="vm.Sitio.image === 0" style="width:36px;height: 36px;" class="icon">
+       <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image === 1" style="width:36px;height: 36px;" class="icon">
        <p style="margin-left: 46px;">{{vm.Sitio.nombre}}</p>
   </a>
+    
   <div class="list">
        <a class="item item-thumbnail-left reserva"  ng-repeat="item in vm.canchas" ng-click="vm.viewAgenda(item)">
            <img src="img/profile-cancha.png" ng-if="item.image === 0" style="width:68px;height: 68px;">

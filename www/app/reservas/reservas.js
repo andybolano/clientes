@@ -16,7 +16,7 @@
             .module('reserva')
             .controller('reservaCtrl', reservaCtrl);
     /* @ngInject */
-    function reservaCtrl($scope, $state, sessionService,reservasService,sitiosService,canchasService ,$ionicTabsDelegate,$ionicLoading) {
+    function reservaCtrl($scope, $state, sessionService,reservasService,sitiosService,canchasService ,$ionicTabsDelegate,$ionicLoading,$ionicPopup) {
          var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.getSitios = getSitios;
@@ -25,12 +25,16 @@
             vm.reservar = reservar;
             vm.moveToFecha = moveToFecha;
             vm.converToFecha = converToFecha;
+            vm.comprobarReservada = comprobarReservada;
             vm.sitios = [];
             vm.Sitio = {};
             vm.canchas = [];
             vm.Cancha = {};
+            vm.reservadas = [];
             vm.fecha = new Date();
             vm.dias = new Array('', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado');
+             vm.horas = [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+            vm.altoAgenda = screen.height - 205;
             getSitios();
         });
         
@@ -115,6 +119,7 @@
             function success(d) {
                $ionicLoading.hide();
                vm.canchas = d.data.canchas;
+               vm.precios = d.data.precios;
             }
             function error(error) {
                 $ionicLoading.hide();
@@ -126,24 +131,34 @@
         function converToFecha(fecha){
            return fecha.toDateInputValue();
         }
+        
+        function comprobarReservada(hora){
+           var i = 0;
+           var sapo = false;
+               for(i=0; i<vm.reservadas.length; i++){
+                   if(parseInt(vm.reservadas[i].hora) === hora){
+                       sapo = true;
+                       break;
+                   }else{
+                       sapo = false;
+                   }
+               }
+               
+               return sapo;
+        }
         function viewAgenda(cancha){
-       
-            vm.horas = [];  
-            vm.horas = [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-       
+
            diaSemana();
            $ionicLoading.show();
            vm.Cancha = cancha;
-           $scope.goForward();
+           vm.hora = [];
+           vm.horas = [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+           
            reservasService.getByCancha(vm.Cancha.id,vm.fecha.toDateInputValue()).then(success, error);
-            function success(d) {
+            function success(d) {                  
                $ionicLoading.hide();
-               var reservas = d.data;
-               var i = 0;
-               for(i=0; i<reservas.length; i++){
-                    document.getElementById(reservas[i].hora+"-"+vm.fecha.toDateInputValue()).style.background = "#FF3F45";
-                    document.getElementById(reservas[i].hora+"-"+vm.fecha.toDateInputValue()).innerHTML ="<span>RESERVADA</span>";
-               }
+               vm.reservadas = d.data;
+               $scope.goForward();
             }
             function error(error) {
                 $ionicLoading.hide();
@@ -153,6 +168,7 @@
         }
         
         function reservar(hora){
+            var precio = 0;
             var f = new Date();
             var hoy = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
             var resultado = dateComapreTo(hoy, vm.fecha.toDateInputValue());
@@ -167,6 +183,32 @@
                 message("Imposible devolver el tiempo");
                 return false;
             }
+            var i = 0;
+           for (i = 0; i < vm.precios.length; i++){
+               if(vm.precios[i].cancha === vm.Cancha.id){
+                   var precios = vm.precios[i].precios;
+                   var y =0;
+                   for(y = 0; y < precios.length; y++){
+                             if(precios[y].HORA === hora+':00'){
+                                 diaSemana = vm.diaSemana.replace(/á/gi,"a");
+                                 var dia = diaSemana.toUpperCase();
+                                 var msgList = precios[y];
+                                 var msgsKeys = Object.keys(msgList);
+                            for(var i=0; i< msgsKeys.length; i++)
+                                {
+                                    if(msgsKeys[i] === dia){
+                                    var msgType     = msgsKeys[i];
+                                    var msgContent  = precios[y][msgType];
+                                    msgContent = msgContent.toString()+".";
+                                    precio = parseInt(msgContent.split('.').join(''));
+                                    break;
+                                    }
+                                }
+                             }
+                    }
+               }
+           }
+         
             
             var object = {
                 idSitio : vm.Sitio.id,
@@ -174,9 +216,57 @@
                 idCliente : sessionService.getIdCliente(),
                 fecha : vm.fecha.toDateInputValue(),
                 hora : hora,
-                diaSeaman: vm.diaSemana,
-                tipo:"SIMPLE"
+                diaSemana: vm.diaSemana,
+                precio:precio
             }
+            
+            var info = "<table width='100%' style='text-align:left'><tr><td width='30%'><b>Sitio:</b></td><td> "+vm.Sitio.nombre+"</td></tr>"+
+                    "<tr><td><b>Cancha : </b></td><td>"+vm.Cancha.nombre+"</td></tr>"+
+                    "<tr><td><b>Fecha : </b></td><td>"+vm.fecha.toDateInputValue()+" - "+vm.diaSemana+"</td></tr>"+
+                    "<tr><td><b>Hora : </b></td><td>"+hora+":00"+"</td></tr>"+
+                    "<tr><td><b>Precio :</b></td><td> $"+precio+"</td></tr>";
+            
+            var confirmPopup = $ionicPopup.confirm({
+            title: 'Confirmar reserva',
+            template: 'Está seguro que desea realizar esta reserva?<br><br>'+info
+          });
+
+          confirmPopup.then(function(res) {
+            if(res) {
+                 $ionicLoading.show();
+                 reservasService.post(object).then(success, error);
+            function success(d) {
+               $ionicLoading.hide();
+               if(d.data.respuesta === true){
+              mostrarAlert("Bien hecho!","<img src='img/like.svg' width='50%'><br>"+d.data.message);
+              $state.go('app.perfil');
+                    object = {};
+                    vm.Sitio = {};
+                    vm.Cancha = {};
+                }else{
+                     mostrarAlert("Oops..",d.data.message); 
+                }
+            }
+            function error(error) {
+                $ionicLoading.hide();
+                    mostrarAlert("Oops..","No tuvimos un problema, intentelo de nuevo");
+                    return;
+            }
+             
+            } else {
+              message("Reserva cancelada");
+            }
+          });
+            
+        }
+        
+         function mostrarAlert(titulo,contenido){
+            var alertPopup = $ionicPopup.alert({
+                title: titulo,
+                template: contenido
+            });
+            alertPopup.then(function (res) {
+            });
         }
         
         

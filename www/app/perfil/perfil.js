@@ -16,13 +16,15 @@
             .module('perfil')
             .controller('perfilCtrl', usuarioCtrl);
     /* @ngInject */
-    function usuarioCtrl($scope,sessionService, $ionicTabsDelegate) {
+    function usuarioCtrl($scope,sessionService, $ionicTabsDelegate,usuarioService, $ionicLoading,$ionicPopup) {
          var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.Usuario = {};
             vm.loadPerfil = loadPerfil;
+            vm.reservasPendientes = {};
             $scope.data = {};
             loadPerfil();
+            loadReservasPendientes();
         });
         $scope.goForward = function () { 
             var selected = $ionicTabsDelegate.selectedIndex();
@@ -58,6 +60,30 @@
                 i = i + 1;
             }, 20);
         };
+        
+        
+        function loadReservasPendientes(){
+            $ionicLoading.show();
+           usuarioService.getReservasPendientes(sessionService.getIdCliente()).then(success, error);
+            function success(d) {
+              vm.reservasPendientes = d.data;
+              $ionicLoading.hide();
+            }
+            function error(error) {
+                $ionicLoading.hide();
+                    mostrarAlert("Oops..","No tuvimos un problems, intentelo de nuevo");
+                    return;
+            }
+        }
+        
+         function mostrarAlert(titulo,contenido){
+            var alertPopup = $ionicPopup.alert({
+                title: titulo,
+                template: contenido
+            });
+            alertPopup.then(function (res) {
+            });
+        }
        
 
     }
