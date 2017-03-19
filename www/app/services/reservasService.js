@@ -3,26 +3,26 @@
 
     angular
         .module('app')
-        .service('sitiosService',sitiosService);
+        .service('reservasService',reservasService);
 
     /* @ngInject */
-    function sitiosService($http, API_URL,$q) {
+    function reservasService($http, API_URL,$q) {
         
          var service = {
-            get:get
+            getByCancha:getByCancha
         };
         return service;
         
-        function get(){
+       function getByCancha(idCancha,fecha){
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.get(API_URL+'/sitios').then(success, error);
+            $http.get(API_URL+'/reservas/cancha/'+idCancha+'/fecha/'+fecha).then(success, error);
             return promise;
-            function success(p) {
+             function success(p) {
                 defered.resolve(p);
             }
             function error(error) {
-                defered.reject(error);
+                defered.reject(error)
             }
         };
        

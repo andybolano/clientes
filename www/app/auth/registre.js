@@ -23,6 +23,7 @@
            authService.register(vm.usuario).then(success, error);
             function success(p) {
                     mostrarAlert("Felicidades!",p.data.message);
+                    $state.go('login');
                     vm.usuario = {};
             }
             function error(error) {

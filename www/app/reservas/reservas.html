@@ -1,4 +1,4 @@
-<ion-view view-title="">
+<ion-view view-title="Realizar Reserva">
      <ion-nav-bar class="degrade-birrias">
             <ion-nav-buttons>
                  <a class="button button-icon icon ion-ios-arrow-thin-left" ui-sref="app.perfil" style="color:#FFF"></a>
@@ -14,21 +14,19 @@
     </ion-view>
   </ion-tab>
 
-  <ion-tab title="CANCHAS" icon-on="ico cancha-active" icon-off="ico cancha-disabled">
+  <ion-tab title="CANCHAS" icon-on="ico cancha-active" icon-off="ico cancha-disabled" ng-click="goForward();">
     <ion-view class="bg">
         <div ng-include src="'app/reservas/canchas.html'"></div>
     </ion-view>
   </ion-tab>
 
-  <ion-tab title="AGENDA" icon-on="ico calendar-active" icon-off="ico calendar-disabled">
+  <ion-tab title="AGENDA" icon-on="ico calendar-active" icon-off="ico calendar-disabled" ng-click="goForward();">
      <ion-view class="bg">
         <div ng-include src="'app/reservas/agenda.html'"></div>
     </ion-view>
   </ion-tab>
 
 </ion-tabs>
-<ion-content overflow-scroll="false" class="has-subheader bg">
- 
-</ion-content>
+
 </ion-view>
 

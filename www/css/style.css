@@ -402,3 +402,58 @@ p{
     color: #fff;
    font-family: 'Quick-bold';
 }
+
+.box-text{
+  color:#FFFFFF;
+  border:0;
+  background-color: rgba(0,0,0,0.3); 
+  color:#FFFFFF;
+  font-family: "Quick-regular";
+  width: 100%;
+  margin-bottom:5px;
+  padding: 8px;
+  height:46px;
+  font-size: 14px;
+  border-radius: 3px;
+-webkit-box-shadow: inset 0px 4px 2px -2px rgba(0,0,0,0.79);
+-moz-box-shadow: inset 0px 4px 2px -2px rgba(0,0,0,0.79);
+box-shadow: inset 0px 4px 2px -2px rgba(0,0,0,0.79);
+}
+
+.box-text:focus{
+border:1px solid #64DD17;
+}
+
+input:focus, input:hover{border:none;outline: 0;}
+
+inp input[type="text"] {
+  -webkit-appearance: none;
+   background-color: transparent;
+   color:#FFF;
+}
+
+ .hora{
+     text-align: center;
+    height: 44px;
+    width: 100%;
+    background-color: #4EB71C;
+    font-family: 'Quick-bold';
+    font-size:14px;
+    font-weight: 100;
+    border-bottom-style: dotted; 
+border-bottom-width: 2px; 
+border-color:#FFFFFF; 
+color:#FFF;
+  }
+  
+  .hora a{
+      color:#FFF;
+      width:100%;
+      text-decoration: none;
+  }
+  
+  .hora span{
+      width: 100%;
+       line-height:44px;
+      
+  }

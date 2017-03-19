@@ -40,7 +40,6 @@
                 }
             }
             function error(error) {
-               destroyCredenciales();
                 defered.reject(error);
             }
         };
