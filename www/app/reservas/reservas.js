@@ -228,35 +228,48 @@
             
             var confirmPopup = $ionicPopup.confirm({
             title: 'Confirmar reserva',
-            template: 'Está seguro que desea realizar esta reserva?<br><br>'+info
+            template: 'Está seguro que desea realizar esta reserva?<br><br>'+info,
+              buttons: [
+                 { text: 'Cancelar',
+                  type: 'button-default',
+                    onTap: function(e) {
+                         message("Reserva cancelada");
+                    }
+                  
+                 },
+                 {
+                     text: 'Si, seguír',
+                     type: 'button-positive', 
+                     onTap: function(e) {
+                           $ionicLoading.show();
+                            reservasService.post(object).then(success, error);
+                       function success(d) {
+                          $ionicLoading.hide();
+                          if(d.data.respuesta === true){
+                         mostrarAlert("Bien hecho!","<img src='img/like.svg' width='50%'><br>"+d.data.message);
+                         $state.go('app.perfil');
+                               object = {};
+                               vm.Sitio = {};
+                               vm.Cancha = {};
+                           }else{
+                                mostrarAlert("Oops..",d.data.message); 
+                           }
+                       }
+                       function error(error) {
+                           $ionicLoading.hide();
+                               mostrarAlert("Oops..","No tuvimos un problema, intentelo de nuevo");
+                               return;
+                       }
+                        }
+                 }
+             ]
           });
 
-          confirmPopup.then(function(res) {
-            if(res) {
-                 $ionicLoading.show();
-                 reservasService.post(object).then(success, error);
-            function success(d) {
-               $ionicLoading.hide();
-               if(d.data.respuesta === true){
-              mostrarAlert("Bien hecho!","<img src='img/like.svg' width='50%'><br>"+d.data.message);
-              $state.go('app.perfil');
-                    object = {};
-                    vm.Sitio = {};
-                    vm.Cancha = {};
-                }else{
-                     mostrarAlert("Oops..",d.data.message); 
-                }
-            }
-            function error(error) {
-                $ionicLoading.hide();
-                    mostrarAlert("Oops..","No tuvimos un problema, intentelo de nuevo");
-                    return;
-            }
+        
+               
              
-            } else {
-              message("Reserva cancelada");
-            }
-          });
+         
+     
             
         }
         

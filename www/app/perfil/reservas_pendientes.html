@@ -5,18 +5,26 @@
             <tr>
                 <td width="60%">
                     <h3>{{item.nombreSitio}} - {{item.nombreCancha}}</h3>
-                    <p><i class="ion-android-calendar" style="font-size:18px;"></i> {{item.fecha}} - <i class="ion-android-time" style="font-size:18px;"></i> {{item.hora}}:00</p>
-                    <button class="btn-secundary cancelar">CANCELAR</button>
+                    <p><i class="ion-android-calendar" style="font-size:18px;"></i> {{item.fecha}} - {{item.diaSemana}}<br><i class="ion-android-time" style="font-size:18px;"></i> {{item.hora}}:00</p>
+                    <button class="btn-secundary cancelar" ng-click="vm.updateEstado(item.id,'cancelada');"><i class="ion-close"></i> CANCELAR</button>
+                    <button class="btn-secundary confirmar" ng-click="vm.updateEstado(item.id,'confirmadasinabono');" ng-if="item.estado === 'esperandoconfirmacion'"><i class="ion-checkmark"></i> CONFIRMAR</button>
                 </td>
                 <td style="text-align: right">
-                    <a href="javascript:;" class="estado er">{{item.estado}}</a>
-                    <span class="money">V: {{item.precio | currency:undefined:0}}</span>
-                    <span class="money">A: {{item.abonoRequerido | currency:undefined:0}}</span>
-                   <span class="money l">L: {{item.abonoLiquidado | currency:undefined:0}}</span>
+                    <a href="javascript:;" class="estado ec" id="alerta" ng-if="item.estado === 'esperandoconfirmacion'" ng-click="vm.mostrarAlert('ESPERANDO CONFIRMACIÓN','El sitio está esperando que confirmes tu reserva, si no la confirmas, pronto será cancelada.')">ESPERANDO CONFIRMACIÓN</a>
+                    <a href="javascript:;" class="estado er" ng-if="item.estado === 'esperandorevision'" ng-click="vm.mostrarAlert('ESPERANDO REVISIÓN','Espera unos minutos, el sitio revisará tu reserva.')">ESPERANDO REVISIÓN</a>
+                    <a href="javascript:;" class="estado csa" ng-if="item.estado === 'confirmadasinabono'" ng-click="vm.mostrarAlert('CONFIRMADA SIN ABONO','Has confirmado tu reserva, pero a un no se reporta que hayas abonado dinero.')">CONFIRMADA SIN ABONO</a>
+                    <a href="javascript:;" class="estado cc" ng-if="item.estado === 'confirmadaconabono'" ng-click="vm.mostrarAlert('CONFIRMADA CON ABONO','Has confirmado tu reserva, y has abononado, te esperamos en nuestro sitio para darte el mejor servicio.')">CONFIRMADA CON ABONO</a>
+                    <span class="money">Valor: {{item.precio | currency:undefined:0}}</span>
+                    <span class="money">Abo. reque.: {{item.abonoRequerido | currency:undefined:0}}</span>
+                   <span class="money l">Abo. liqui: {{item.abonoLiquidado | currency:undefined:0}}</span>
                 </td>
             </tr>
 
         </table>
     </a>
 </div>
+    <div ng-if="vm.reservasPendientes.length === 0">
+        <img src="img/player.svg" width="70%;" style="margin-top:10%;">
+        <h3>No tienes reservas pendientes</h3>
+    </div>
 </ion-content>

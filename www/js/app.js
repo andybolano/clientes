@@ -5,6 +5,7 @@
             'auth',
             'perfil',
             'reserva',
+            'editar'
         ]);
 
 app.config(function($ionicConfigProvider) {

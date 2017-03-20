@@ -10,7 +10,9 @@
         
          var service = {
             getUsuario:getUsuario,
-            getReservasPendientes:getReservasPendientes
+            getReservasPendientes:getReservasPendientes,
+            getUsuarioServer:getUsuarioServer,
+            getReservasHistorial:getReservasHistorial
         };
         return service;
         
@@ -18,6 +20,19 @@
             var usuario = JSON.parse(localStorage.getItem('usuario'));
             return usuario[0];    
         };
+        
+        function getUsuarioServer(idCliente){
+        var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL+'/cliente/'+idCliente).then(success, error);
+            return promise;
+             function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error)
+            }
+        }
         
         function getReservasPendientes(idCliente){
             var defered = $q.defer();
@@ -32,6 +47,19 @@
             }
         }
         
+        
+         function getReservasHistorial(idCliente){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            $http.get(API_URL+'/cliente/'+idCliente+'/reservas/historial').then(success, error);
+            return promise;
+             function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error)
+            }
+        }
 
     }
 })();
