@@ -1,49 +1,47 @@
 <ion-content ng-class="transition" class="center" on-swipe-right="goBack()" on-swipe-left="goForward()">
     <div class="row">
-            <div class="col">
-                <div class="sombra-photo">
-                        <div ang:round:progress data-round-progress-model="data">     
-                                    
-                        </div>
-                        <div class="content-circle circle">
-                            <img ng-src="img/default.png" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="img">
-                        </div>
-                        <p class="name_user">{{vm.Usuario.nombres}}<br>{{vm.Usuario.apellidos}}</p>
-                </div>
-            </div>
-       </div>
-            <div class="separador"></div>
-            <h2><span>ESTADISTICAS DE</span><br>RESERVAS</h2>
-            <div class="row">
-                <div class="col col-10">
-            
-                </div>
-                <div class="col col-80">
-                   <div class="box-transparent">
-                   <table width="100%" border="0">
-                      <tr>
-                          <td><span class="num-big" ng-if="vm.Usuario.cumplidas === 0">0</span><span class="num-big" ng-if="vm.Usuario.cumplidas > 0"><count-up count-to="vm.Usuario.cumplidas" interval="50"></count-up></span></td>
-                          <td><span class="num-big" ng-if="vm.Usuario.canceladas === 0">0</span><span class="num-big" ng-if="vm.Usuario.canceladas > 0"><count-up count-to="vm.Usuario.canceladas" interval="50"></count-up></span></td>
-                          <td><span class="num-big" ng-if="vm.Usuario.incumplidas === 0">0</span><span class="num-big" ng-if="vm.Usuario.incumplidas > 0"><count-up count-to="vm.Usuario.incumplidas" interval="50"></count-up></span></td>
-                      </tr>
-                      <tr>
-                          <td><p>CUMPLIDAS</p></td>
-                          <td><p>CANCELADAS</p></td>
-                          <td><p>INCUMPLIDAS</p></td>
-                      </tr>
-                    </table>      
-                    </div> 
-                </div>
-            </div>
+        <div class="col">
+            <div class="sombra-photo">
+                <div ang:round:progress data-round-progress-model="data">     
 
+                </div>
+                <div class="content-circle circle">
+                    <img ng-src="img/default.png" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="img">
+                </div>
+                <p class="name_user">{{vm.Usuario.nombres}}<br>{{vm.Usuario.apellidos}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="separador"></div>
+    <h2><span>ESTADISTICAS DE</span><br>RESERVAS</h2>
     <div class="row">
         <div class="col col-10">
-            
+
         </div>
-            <div class="col col-80">
-               <a ui-sref="app.reserva" class="button button-block btn btn-red">
-                    REALIZAR RESERVA
-                </a>
-           </div>
+        <div class="col col-80">
+            <div class="box-transparent">
+                <table width="100%" border="0">
+                    <tr>
+                        <td><span class="num-big" ng-if="vm.Usuario.cumplidas === 0">0</span><span class="num-big" ng-if="vm.Usuario.cumplidas > 0"><count-up count-to="vm.Usuario.cumplidas" interval="50"></count-up></span></td>
+                        <td><span class="num-big" ng-if="vm.Usuario.canceladas === 0">0</span><span class="num-big" ng-if="vm.Usuario.canceladas > 0"><count-up count-to="vm.Usuario.canceladas" interval="50"></count-up></span></td>
+                        <td><span class="num-big" ng-if="vm.Usuario.incumplidas === 0">0</span><span class="num-big" ng-if="vm.Usuario.incumplidas > 0"><count-up count-to="vm.Usuario.incumplidas" interval="50"></count-up></span></td>
+                    </tr>
+                    <tr>
+                        <td><p>CUMPLIDAS</p></td>
+                        <td><p>CANCELADAS</p></td>
+                        <td><p>INCUMPLIDAS</p></td>
+                    </tr>
+                </table>      
+            </div> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-10">
+        </div>
+        <div class="col col-80">
+            <button ng-click='vm.irReservar()' class="button button-block btn btn-red">
+                REALIZAR RESERVA
+            </button>
+        </div>
     </div>
 </ion-content>

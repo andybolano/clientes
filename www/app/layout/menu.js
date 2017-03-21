@@ -6,11 +6,11 @@
         .controller('MenuCtrl', MenuCtrl);
 
     /* @ngInject */
-    function MenuCtrl(authService,$scope,$ionicPopover) {
-        var vm = this;
-        vm.logout = authService.logout;
+    function MenuCtrl(authService,$scope,$ionicPopover,$state,$ionicLoading) {
+       
+      
         
-        $ionicPopover.fromTemplateUrl('my-popover.html', {
+       $ionicPopover.fromTemplateUrl('my-popover.html', {
                     scope: $scope
             }).then(function(popover) {
                 $scope.popover = popover;
@@ -35,10 +35,22 @@
                // Execute action
              });
              
+
              $scope.logout = function(){
-                 $scope.closePopover();
-                 authService.logout();
-             }
+                  $scope.closePopover();
+                var promisePost = authService.logout();
+                      promisePost.then(function (d) {
+                           message("sesión finalizada!");
+                             $state.go('login',{},{reload: true});
+                        },
+                        function error(error) {
+                           messge(error.data.error);
+                        });
+                }
+                
+      function message(msg) {
+            $ionicLoading.show({template: msg, noBackdrop: true, duration: 2000});
+        }
      }
 
 })();

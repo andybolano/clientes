@@ -6,7 +6,7 @@
         .service('authService', authService);
 
     /* @ngInject */
-    function authService($http, API_URL, $state,$q,$ionicHistory,HOME) {
+    function authService($http, API_URL, $state,$q,$ionicHistory,HOME,$ionicLoading) {
         
  
 
@@ -56,8 +56,26 @@
             return promise;
         }
 
-        function logout(){
-               
+         function logout(){ 
+            $ionicLoading.show({template:'Cerrando Sesion....'});
+           var defered = $q.defer();
+            var promise = defered.promise;
+            $http.post(API_URL+'/logout').then(success, error);
+            return promise;
+             function success(p) {
+                 
+            destroyCredenciales();
+            setTimeout(function () {
+                $ionicHistory.clearCache();
+                $ionicHistory.clearHistory();
+                $ionicHistory.nextViewOptions({ disableBack: true, historyRoot: true });
+                $ionicLoading.hide();
+                }, 30);
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
         };
 
         function register(usuario){
@@ -74,7 +92,11 @@
             }
         };
 
-
+function destroyCredenciales() {
+            localStorage.clear();
+            sessionStorage.clear();
+        }
+        
     function storeUser(data) {
             var data = JSON.parse("[" + data.user + "]");
             localStorage.setItem('data',JSON.stringify(data[0].cliente));

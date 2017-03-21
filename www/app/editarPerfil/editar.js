@@ -23,7 +23,7 @@
             vm.Usuario = sessionService.getUser();
         });
         $scope.$on("$ionicView.beforeEnter", function(event, data){
-            
+            $scope.popover.hide();
          });
          function mostrarAlert(titulo,contenido){
             var alertPopup = $ionicPopup.alert({

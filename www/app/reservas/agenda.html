@@ -1,4 +1,4 @@
-<ion-content ng-class="transition" on-swipe-right="goBack()" on-swipe-left="goForward()">
+<ion-content ng-class="transition" overflow-scroll="true" on-swipe-right="goBack()" on-swipe-left="goForward()">
      <a class="item item-icon-left reserva " href="javascript:;" style="background-color: transparent;border:none;height:48px;">
          <div class="row">
              <div class="col">
@@ -28,7 +28,7 @@
         </div>
     </div>
   
-    <ul style="height:{{vm.altoAgenda}}px;overflow-y: auto" class="listAgenda">
+    <ul style="height:{{vm.altoAgenda}}px; overflow-y:scroll" class="listAgenda">
         <li ng-repeat="item in vm.horas" id="{{item}}" class="hora"> 
            <a href="javascript:;" ng-click="vm.reservar(item);"  ng-if="vm.comprobarReservada(item) === false" class="disponible" >
             <div class="row">

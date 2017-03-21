@@ -282,16 +282,24 @@ p{
 }
 
 /****popover***/
+
+.popover {
+     margin-top: 0;
+    background-color:#e24243;
+    width:140px;
+    height:93px;
+}
+.popover .item {
+    border-color: #c33839; 
+    background-color: transparent;
+    color: #FFF; 
+    font-family:"Quick-bold";
+    font-size:12px;
+}
 .platform-android4_2 .popover{
     margin-top: 0;
     background-color:#e24243;
 }
-
-.popover {
-    width:140px;
-    height:93px;
-}
-
 .platform-android .popover .item {
     border-color: #c33839; 
     background-color: transparent;
@@ -344,8 +352,9 @@ p{
     height:30px; 
 }
 .confirmar{
-    color:#8bc34a !important;
+    color:#FFF !important;
     border:1px solid #8bc34a;
+    background-color:#8bc34a;
     border-radius:5px;
     height:30px; 
 }
