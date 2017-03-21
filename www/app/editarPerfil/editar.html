@@ -1,21 +1,34 @@
 <ion-view title="Editar Perfil" cache-view="false" class="bg">
-   <ion-nav-bar class="degrade-birrias">
-             <ion-nav-buttons>
-                 <a class="button button-icon icon ion-ios-arrow-thin-left" ui-sref="app.perfil" style="color:#FFF"></a>
-            </ion-nav-buttons>
-            <ion-nav-title>
-                Editar Perfil
-            </ion-nav-title>
-        </ion-nav-bar> 
-     <ion-content overflow-scroll="true" class="center  has-header">
+    <ion-nav-bar class="degrade-birrias">
+        <ion-nav-buttons>
+            <a class="button button-icon icon ion-ios-arrow-thin-left" ui-sref="app.perfil" style="color:#FFF"></a>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            Editar Perfil
+        </ion-nav-title>
+    </ion-nav-bar> 
+    <ion-content overflow-scroll="true" class="center  has-header">
         <div class="row">
-               <div class="col">
-                        <div class="sombra-photo">
-                                <div class="content-circle circle">
-                                    <img ng-src="img/default.png" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="img">
-                                </div>
-                        </div>
+            <div class="col">
+                <div class="sombra-photo">
+                    <div class="content-circle circle">
+                        <img ng-src="img/default.png" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="img">
+                    </div>
                 </div>
-               </div>
+            </div>
+        </div>
+        <div style="width:70%;margin-left:15%;text-align: left" >
+          <p class="p">Información personal</p>
+          <input type="text" ng-model="vm.Usuario.nombres" class="box-text user" placeholder="Nombres">
+          <input type="text" ng-model="vm.Usuario.apellidos" class="box-text user" placeholder="Apellidos">
+          <input type="text" ng-model="vm.Usuario.telefono" class="box-text phone" placeholder="Telefono">
+          <br>
+          <p class="p">Información de Acceso</p>
+          <input type="text" ng-model="vm.Usuario.email" class="box-text email" >
+          <input type="password" ng-model="vm.Usuario.clave" class="box-text pass" placeholder="Contraseña actual">
+          <input type="password" ng-model="vm.Usuario.newClave" class="box-text pass" placeholder="Contraseña nueva">
+          <br>
+          <button class="button btn-secundary button-assertive" style="width: 100%" ng-click="vm.update()">Guardar Cambios</button>
+        </div>
     </ion-content>
 </ion-view> 

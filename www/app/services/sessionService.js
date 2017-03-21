@@ -1,31 +1,31 @@
 (function () {
     'use strict';
-
     angular
         .module('app')
         .service('sessionService', sessionService);
-
     /* @ngInject */
     function sessionService() {
-
         var service = {
             isLoggedIn: isLoggedIn,
             getIdUser: getIdUser,
             getUser: getUser,
             getToken : getToken,
-            getIdCliente:getIdCliente
+            getIdCliente:getIdCliente,
+            getEmail : getEmail
             
         };
         return service;
-
-      
         function isLoggedIn(){
           return localStorage.getItem('userIsLogin') !== null;  
         };
-        
          function getToken(){
           if(localStorage.getItem('token') !== null){
               return localStorage.getItem('token');
+          } 
+        };
+        function getEmail(){
+          if(localStorage.getItem('email') !== null){
+              return localStorage.getItem('email');
           } 
         };
         function getIdUser(){

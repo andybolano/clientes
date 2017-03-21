@@ -127,7 +127,8 @@
                 }
                 i = i + 1;
             }, 20);
-        };
+        }
+        ;
         function loadHistorialReservas() {
             $ionicLoading.show();
             usuarioService.getReservasHistorial(sessionService.getIdCliente()).then(success, error);
