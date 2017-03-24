@@ -1,8 +1,8 @@
 <ion-content ng-class="transition" on-swipe-right="goBack()" on-swipe-left="goForward()">
     <div class="list">
         <a class="item item-thumbnail-left reserva"  ng-repeat="item in vm.sitios" ng-click="vm.viewCanchas(item)">
-            <img src="img/profile-sitio.png" ng-if="item.image === 0" style="width:68px;height: 68px;">
-            <img src="{{item.ruta}}" ng-if="item.image === 1" style="width:68px;height: 68px;">
+            <img src="img/profile-sitio.png" ng-if="item.image == 0" style="width:68px;height: 68px;">
+            <img src="{{item.ruta}}" ng-if="item.image == 1" style="width:68px;height: 68px;">
             <div style="margin-left:84px;">
                 <h3>{{item.nombre}}</h3>
                 <p><i class="ion-ios-telephone"></i> {{item.telefono}}</p>

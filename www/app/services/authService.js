@@ -13,10 +13,12 @@
             currentUser: currentUser
         };
         return service;
+        
+
         function login(usuario) {
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.post(API_URL + '/authenticate', usuario).then(success, error);
+            $http.post(API_URL+'/authenticate', usuario).then(success, error);
             return promise;
             function success(p) {
                 if (p.data.respuesta === false) {
@@ -37,6 +39,7 @@
                 }
             }
             function error(error) {
+                console.log(JSON.stringify(error))
                 defered.reject(error);
             }
         }

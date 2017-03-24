@@ -30,6 +30,13 @@
     font-weight: normal;
     src: url(../fonts/Quicksand-Regular.otf);
 }
+.slider {  
+  height: 100%;
+}
+
+.slider-pager{
+    display: none;
+}
 .degrade-birrias{
     background: rgba(255,119,1,1);
     background: -moz-linear-gradient(-45deg, rgba(255,119,1,1) 0%, rgba(255,119,1,1) 25%, rgba(226,65,70,1) 100%) !important;

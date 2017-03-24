@@ -1,4 +1,4 @@
-<ion-view view-title="Realizar Reserva" cache-view="false">
+<ion-view view-title="Realizar Reserva" cache-view="false" class="bg">
     <ion-nav-bar class="degrade-birrias">
         <ion-nav-buttons>
             <a class="button button-icon icon ion-ios-arrow-thin-left" ui-sref="app.perfil" style="color:#FFF"></a>
@@ -8,21 +8,25 @@
         </ion-nav-title>
     </ion-nav-bar>
     <ion-tabs class="tabs-transparent tabs-icon-top">
-        <ion-tab title="SITIOS" icon-on="ico sitio-active" icon-off="ico sitio-disabled">
-            <ion-view class="bg">
-                <div ng-include src="'app/reservas/sitios.html'"></div>
-            </ion-view>
+        <ion-tab title="SITIOS" icon-on="ico sitio-active" icon-off="ico sitio-disabled" ng-click="changeSlide(0);">
         </ion-tab>
-        <ion-tab title="CANCHAS" icon-on="ico cancha-active" icon-off="ico cancha-disabled" ng-click="goForward();">
-            <ion-view class="bg">
-                <div ng-include src="'app/reservas/canchas.html'"></div>
-            </ion-view>
+        <ion-tab title="CANCHAS" icon-on="ico cancha-active" icon-off="ico cancha-disabled" ng-click="changeSlide(1);">
         </ion-tab>
-        <ion-tab title="AGENDA" icon-on="ico calendar-active" icon-off="ico calendar-disabled" ng-click="goForward();">
-            <ion-view class="bg">
-                <div ng-include src="'app/reservas/agenda.html'"></div>
-            </ion-view>
+        <ion-tab title="AGENDA" icon-on="ico calendar-active" icon-off="ico calendar-disabled" ng-click="changeSlide(2);">
         </ion-tab>
     </ion-tabs>
+     <ion-content overflow-scroll="true" class="center has-subheader">
+    <ion-slide-box on-slide-changed="slideChanged(index);changetab(index)">
+          <ion-slide>
+              <div ng-include src="'app/reservas/sitios.html'"></div>
+          </ion-slide>    
+        <ion-slide>
+            <div ng-include src="'app/reservas/canchas.html'"></div>
+          </ion-slide>   
+        <ion-slide>
+            <div ng-include src="'app/reservas/agenda.html'"></div>
+          </ion-slide>
+    </ion-slide-box>
+    </ion-content>
 </ion-view>
 

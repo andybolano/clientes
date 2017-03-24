@@ -16,7 +16,7 @@
             .module('perfil')
             .controller('perfilCtrl', usuarioCtrl);
     /* @ngInject */
-    function usuarioCtrl($scope, $state, sessionService, $ionicTabsDelegate, usuarioService, $ionicLoading, $ionicPopup, reservasService) {
+    function usuarioCtrl($scope, $state, sessionService, $ionicTabsDelegate,$ionicSlideBoxDelegate, usuarioService, $ionicLoading, $ionicPopup, reservasService) {
         var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.Usuario = {};
@@ -25,12 +25,9 @@
             vm.loadHistorialReservas = loadHistorialReservas;
             vm.updateEstado = updateEstado;
             vm.irReservar = irReservar;
-            vm.reservasPendientes = {};
-            vm.historial = {};
+            vm.reservasPendientes = [];
+            vm.historial = [];
             $scope.data = {};
-            loadPerfil();
-            loadReservasPendientes();
-            loadHistorialReservas();
         });
         function irReservar() {
             $state.go('app.reserva');
@@ -38,23 +35,19 @@
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             loadPerfil();
             loadReservasPendientes();
+            loadHistorialReservas();
             ;
         });
-        $scope.goForward = function () {
-            var selected = $ionicTabsDelegate.selectedIndex();
-            if (selected !== -1) {
-                $ionicTabsDelegate.select(selected + 1);
-                $scope.transition = 'animated bounceInRight';
-            }
+        
+         $scope.changetab = function (item) {
+            $ionicTabsDelegate.select(item);
         };
-        $scope.goBack = function () {
-            var selected = $ionicTabsDelegate.selectedIndex();
-            if (selected !== -1 && selected !== 0) {
-                $ionicTabsDelegate.select(selected - 1);
-                $scope.transition = 'animated bounceInLeft';
-            }
+        $scope.changeSlide = function (item) {
+            $ionicTabsDelegate.select(item);
+            $ionicSlideBoxDelegate.slide(item);
         };
-        function updateEstado(idReserva, estado) {
+        
+       function updateEstado(idReserva, estado) {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Confirmar Acción',
                 template: 'Está seguro que desea cambiar el estado de esta reserva a: <br><b>' + estado + '</b>?',

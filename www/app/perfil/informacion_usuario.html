@@ -1,4 +1,4 @@
-<ion-content ng-class="transition" class="center" on-swipe-right="goBack()" on-swipe-left="goForward()">
+<ion-content class="center">
     <div class="row">
         <div class="col">
             <div class="sombra-photo">
@@ -22,9 +22,9 @@
             <div class="box-transparent">
                 <table width="100%" border="0">
                     <tr>
-                        <td><span class="num-big" ng-if="vm.Usuario.cumplidas === 0">0</span><span class="num-big" ng-if="vm.Usuario.cumplidas > 0"><count-up count-to="vm.Usuario.cumplidas" interval="50"></count-up></span></td>
-                        <td><span class="num-big" ng-if="vm.Usuario.canceladas === 0">0</span><span class="num-big" ng-if="vm.Usuario.canceladas > 0"><count-up count-to="vm.Usuario.canceladas" interval="50"></count-up></span></td>
-                        <td><span class="num-big" ng-if="vm.Usuario.incumplidas === 0">0</span><span class="num-big" ng-if="vm.Usuario.incumplidas > 0"><count-up count-to="vm.Usuario.incumplidas" interval="50"></count-up></span></td>
+                        <td><span class="num-big" ng-if="vm.Usuario.cumplidas == 0">0</span><span class="num-big" ng-if="vm.Usuario.cumplidas > 0"><count-up count-to="vm.Usuario.cumplidas" interval="50"></count-up></span></td>
+                        <td><span class="num-big" ng-if="vm.Usuario.canceladas == 0">0</span><span class="num-big" ng-if="vm.Usuario.canceladas > 0"><count-up count-to="vm.Usuario.canceladas" interval="50"></count-up></span></td>
+                        <td><span class="num-big" ng-if="vm.Usuario.incumplidas == 0">0</span><span class="num-big" ng-if="vm.Usuario.incumplidas > 0"><count-up count-to="vm.Usuario.incumplidas" interval="50"></count-up></span></td>
                     </tr>
                     <tr>
                         <td><p>CUMPLIDAS</p></td>

@@ -1,4 +1,4 @@
-<ion-view title="Birrias">
+<ion-view title="Birrias" animation="slide-left-right" class="bg">
     <ion-nav-bar class="degrade-birrias">
         <ion-nav-buttons>
             <img ng-src="img/logo_min.png" style="width:28px; height: 28px;margin-top: 3px;">
@@ -12,24 +12,27 @@
             </a>
         </ion-nav-buttons>
     </ion-nav-bar> 
+    
     <ion-tabs class="tabs-transparent tabs-icon-top">
-        <ion-tab title="PERFIL" icon-on="ion-ios-person" icon-off="ion-ios-person">
-            <ion-view class="bg">
-                <div ng-include src="'app/perfil/informacion_usuario.html'"></div>
-            </ion-view>
+        <ion-tab title="PERFIL" icon-on="ion-ios-person" icon-off="ion-ios-person" ng-click="changeSlide(0);">
         </ion-tab>
-        <ion-tab title="PENDIENTES <span class='notificacion'>{{vm.reservasPendientes.length}}</span>" icon-on="ico pendientes-active" icon-off="ico pendientes-disabled" >
-            <ion-view class="bg">
-                <div ng-include src="'app/perfil/reservas_pendientes.html'"></div>
-            </ion-view>
+        <ion-tab title="PENDIENTES <span class='notificacion'>{{vm.reservasPendientes.length}}</span>" icon-on="ico pendientes-active" icon-off="ico pendientes-disabled" ng-click="changeSlide(1);">
         </ion-tab>
-        <ion-tab title="HISTORIAL" icon-on="ico history-active" icon-off="ico history-disabled">
-            <ion-view class="bg">
-                <div ng-include src="'app/perfil/historial_reservas.html'"></div>
-            </ion-view>
+        <ion-tab title="HISTORIAL" icon-on="ico history-active" icon-off="ico history-disabled" ng-click="changeSlide(2);">
         </ion-tab>
     </ion-tabs>
-    <ion-content overflow-scroll="true" class="center bg has-subheader">
-
+    
+    <ion-content overflow-scroll="true" class="center has-subheader">
+    <ion-slide-box on-slide-changed="slideChanged(index);changetab(index)">
+          <ion-slide>
+               <div ng-include src="'app/perfil/informacion_usuario.html'"></div>
+          </ion-slide>    
+        <ion-slide>
+            <div ng-include src="'app/perfil/reservas_pendientes.html'"></div>
+          </ion-slide>   
+        <ion-slide>
+            <div ng-include src="'app/perfil/historial_reservas.html'"></div>
+          </ion-slide>
+    </ion-slide-box>
     </ion-content>
 </ion-view>    

@@ -2,13 +2,13 @@
     <a class="item item-icon-left reserva " href="javascript:;" style="background-color: transparent;border:none;height:48px;">
         <div class="row">
             <div class="col">
-                <img src="img/profile-sitio.png" ng-if="vm.Sitio.image === 0" style="width:36px;height: 36px;" class="icon">
-                <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image === 1" style="width:36px;height: 36px;" class="icon">
+                <img src="img/profile-sitio.png" ng-if="vm.Sitio.image == 0" style="width:36px;height: 36px;" class="icon">
+                <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image == 1" style="width:36px;height: 36px;" class="icon">
                 <p style="margin-left: 36px;margin-top:-10px;">{{vm.Sitio.nombre}}</p>
             </div>
             <div class="col">
-                <img src="img/profile-cancha.png" ng-if="vm.Cancha.image === 0" style="width:36px;height: 36px;margin-left:50%" class="icon">
-                <img src="{{vm.Cancha.ruta}}" ng-if="vm.Cancha.image === 1" style="width:36px;height: 36px;margin-left:50%" class="icon">
+                <img src="img/profile-cancha.png" ng-if="vm.Cancha.image == 0" style="width:36px;height: 36px;margin-left:50%" class="icon">
+                <img src="{{vm.Cancha.ruta}}" ng-if="vm.Cancha.image == 1" style="width:36px;height: 36px;margin-left:50%" class="icon">
                 <p style="margin-top:-10px;margin-left:44px;">{{vm.Cancha.nombre}}</p>
             </div>    
         </div>
@@ -29,7 +29,7 @@
     </div>
     <ul style="height:{{vm.altoAgenda}}px; overflow-y:scroll" class="listAgenda">
         <li ng-repeat="item in vm.horas" id="{{item}}" class="hora"> 
-            <a href="javascript:;" ng-click="vm.reservar(item);"  ng-if="vm.comprobarReservada(item) === false" class="disponible" >
+            <a href="javascript:;" ng-click="vm.reservar(item);"  ng-if="vm.comprobarReservada(item) == false" class="disponible" >
                 <div class="row">
                     <div class="col col-40">
                         {{item}}:00
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </a>
-            <a href="javascript:;"  ng-if="vm.comprobarReservada(item) === true" class="reservada">
+            <a href="javascript:;"  ng-if="vm.comprobarReservada(item) == true" class="reservada">
                 <div class="row">
                     <div class="col col-40">
                         {{item}}:00

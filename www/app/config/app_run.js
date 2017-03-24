@@ -12,18 +12,45 @@
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
+            
+          /*var push = PushNotification.init({
+                android: {
+                        senderID: "991363187494"
+                },
+                browser: {
+                    pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+                },
+                    ios: {
+                            alert: "true",
+                            badge: true,
+                            sound: 'false'
+                    },
+                    windows: {}
+            });
+            
+          push.on('registration', function(data) {
+              localStorage.setItem('regId',data.registrationId);
+          });
+            
+          push.on('notification', function(data) {
+               alert(JSON.stringify(data))
+          });
+*/
+ 
             autenticate();
         });
         function autenticate() {
-            if (!authService.currentUser()) {
+            if (authService.currentUser()) {
                 authService.autologin().then(function (res) {
                     hideSplash();
                     if (res) {
-
+  
                     } else {
                         $state.go('login');
                     }
                 })
+            }else{
+                   $state.go('login');
             }
         }
         function hideSplash() {
@@ -35,3 +62,5 @@
         }
     }
 })();
+
+//cordova plugin add phonegap-plugin-push --variable SENDER_ID=991363187494 --save

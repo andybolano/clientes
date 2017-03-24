@@ -53,6 +53,7 @@
                 return 0;
             }
             $ionicLoading.show();
+            vm.usuario.regId = localStorage.getItem('regId');
             authService.login(vm.usuario).then(success, error);
             function success(d) {
                 $ionicLoading.hide();

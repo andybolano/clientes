@@ -16,7 +16,7 @@
             .module('reserva')
             .controller('reservaCtrl', reservaCtrl);
     /* @ngInject */
-    function reservaCtrl($scope, $state, sessionService, reservasService, sitiosService, canchasService, $ionicTabsDelegate, $ionicLoading, $ionicPopup) {
+    function reservaCtrl($scope, $state, sessionService, reservasService, sitiosService, canchasService, $ionicTabsDelegate, $ionicLoading, $ionicPopup,$ionicSlideBoxDelegate) {
         var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.getSitios = getSitios;
@@ -34,7 +34,7 @@
             vm.fecha = new Date();
             vm.dias = new Array('', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado');
             vm.horas = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
-            vm.altoAgenda = screen.height - 210;
+            vm.altoAgenda = screen.height - 230;
             getSitios();
         });
         Date.prototype.toDateInputValue = (function () {
@@ -67,29 +67,24 @@
         function message(msg) {
             $ionicLoading.show({template: msg, noBackdrop: true, duration: 2000});
         }
-        $scope.goForward = function () {
-            var selected = $ionicTabsDelegate.selectedIndex();
-            if (isEmptyJSON(vm.Sitio) && selected === 0) {
+        
+        $scope.changetab = function (item) {
+            if (isEmptyJSON(vm.Sitio) && item === 1) {
+                $ionicSlideBoxDelegate.slide(0);
                 message("Selecciona un sitio");
                 return false;
             }
-
-            if (isEmptyJSON(vm.Cancha) && selected === 1) {
-                message("Selecciona una cancha");
+            if (isEmptyJSON(vm.Cancha) && item === 2) {
+                $ionicSlideBoxDelegate.slide(1);
+                message("Selecciona una Cancha ");
                 return false;
             }
-
-            if (selected !== -1) {
-                $ionicTabsDelegate.select(selected + 1);
-                $scope.transition = 'animated bounceInRight';
-            }
+             $ionicTabsDelegate.select(item);
         };
-        $scope.goBack = function () {
-            var selected = $ionicTabsDelegate.selectedIndex();
-            if (selected !== -1 && selected !== 0) {
-                $ionicTabsDelegate.select(selected - 1);
-                $scope.transition = 'animated bounceInLeft';
-            }
+        $scope.changeSlide = function (item) {
+            $ionicTabsDelegate.select(item);
+            $ionicSlideBoxDelegate.slide(item);
+            
         };
         function getSitios() {
             $ionicLoading.show();
@@ -107,7 +102,7 @@
         function viewCanchas(sitio) {
             $ionicLoading.show();
             vm.Sitio = sitio;
-            $scope.goForward();
+            $scope.changeSlide(1);
             canchasService.getCanchas(sitio.id).then(success, error);
             function success(d) {
                 $ionicLoading.hide();
@@ -146,7 +141,7 @@
             function success(d) {
                 $ionicLoading.hide();
                 vm.reservadas = d.data;
-                $scope.goForward();
+                 $scope.changeSlide(2);
             }
             function error(error) {
                 $ionicLoading.hide();
