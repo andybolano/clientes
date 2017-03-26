@@ -17,7 +17,7 @@
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="StatusBarOverlaysWebView" value="true"/>
-  <preference name="StatusBarBackgroundColor" value="#c85d00"/>
+  <preference name="StatusBarBackgroundColor" value="#b15003"/>
   <preference name="StatusBarStyle" value="lightcontent"/>
   <preference name="SplashScreen" value="screen"/>
   <feature name="StatusBar">

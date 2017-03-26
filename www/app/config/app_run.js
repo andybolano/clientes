@@ -13,19 +13,14 @@
                 StatusBar.styleDefault();
             }
             
-          /*var push = PushNotification.init({
+         var push = PushNotification.init({
                 android: {
-                        senderID: "991363187494"
-                },
-                browser: {
-                    pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-                },
-                    ios: {
-                            alert: "true",
-                            badge: true,
-                            sound: 'false'
-                    },
-                    windows: {}
+                        senderID: "991363187494",
+                        vibrate : true,
+                        sound:true,
+                        alert: true,
+                        badge: true,
+                }
             });
             
           push.on('registration', function(data) {
@@ -33,9 +28,9 @@
           });
             
           push.on('notification', function(data) {
-               alert(JSON.stringify(data))
+               alert(JSON.stringify(data));
           });
-*/
+
  
             autenticate();
         });
