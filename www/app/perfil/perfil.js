@@ -16,7 +16,7 @@
             .module('perfil')
             .controller('perfilCtrl', usuarioCtrl);
     /* @ngInject */
-    function usuarioCtrl($scope, $state, sessionService, $ionicTabsDelegate,$ionicSlideBoxDelegate, usuarioService, $ionicLoading, $ionicPopup, reservasService) {
+    function usuarioCtrl($scope, $state, sessionService,$ionicHistory, $ionicTabsDelegate,$ionicSlideBoxDelegate, usuarioService, $ionicLoading, $ionicPopup, reservasService) {
         var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.Usuario = {};
@@ -24,6 +24,8 @@
             vm.mostrarAlert = mostrarAlert;
             vm.loadHistorialReservas = loadHistorialReservas;
             vm.updateEstado = updateEstado;
+            vm.loadReservasPendientes = loadReservasPendientes;
+            vm.loadHistorialReservas = loadHistorialReservas;
             vm.irReservar = irReservar;
             vm.reservasPendientes = [];
             vm.historial = [];
@@ -147,17 +149,31 @@
             $ionicLoading.show({template: msg, noBackdrop: true, duration: 2000});
         }
         function loadReservasPendientes() {
+          
             $ionicLoading.show();
-            usuarioService.getReservasPendientes(sessionService.getIdCliente()).then(success, error);
-            function success(d) {
+           var promisePost =  usuarioService.getReservasPendientes(sessionService.getIdCliente());
+            promisePost.then(function (d) {
+          
                 vm.reservasPendientes = d.data;
                 $ionicLoading.hide();
-            }
-            function error(error) {
+            }, function (err) {
+      
+                if(err.data.status == 401){
+                     mostrarAlert("Oops..", err.data.error);
+                     localStorage.clear();
+                     sessionStorage.clear();
+                    $state.go('login', {}, {reload: true});
+                    $ionicHistory.clearCache();
+                    $ionicHistory.clearHistory();
+                    $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+                }
                 $ionicLoading.hide();
                mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
-            }
+            }).finally(function () {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
+      
         }
         function mostrarAlert(titulo, contenido) {
             var alertPopup = $ionicPopup.alert({

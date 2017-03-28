@@ -1,4 +1,8 @@
 <ion-content overflow-scroll="true">
+     <ion-refresher
+    pulling-text="Actualizar reservas..."
+    on-refresh="vm.loadReservasPendientes()">
+  </ion-refresher>
   <div class="list">
     <a class="item item-thumbnail-left reserva" href="javascript:;" ng-repeat="item in vm.reservasPendientes" >
         <table style="width: 100%">

@@ -30,7 +30,7 @@
             
            push.on('notification', function(data) {
                  var confirmPopup = $ionicPopup.confirm({
-                title: 'Notificacion',
+                title: 'Notificación',
                 template: data.message,
                 buttons: [
                     {text: 'Entendido',
