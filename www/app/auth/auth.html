@@ -1,0 +1,12 @@
+<ion-view title="Inicio de Sesion">
+    <ion-content overflow-scroll="true" style="padding: 20px;" class="center degrade-birrias">
+    <ion-slide-box on-slide-changed="slideChanged(index);changetab(index)">
+          <ion-slide>
+                <div ng-include src="'app/auth/login.html'"></div>
+          </ion-slide>    
+        <ion-slide>
+           <div ng-include src="'app/auth/registre.html'"></div>
+          </ion-slide>   
+    </ion-slide-box>
+    </ion-content>
+</ion-view> 

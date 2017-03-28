@@ -1,24 +1,30 @@
 <ion-content ng-class="transition" overflow-scroll="true" on-swipe-right="goBack()" on-swipe-left="goForward()">
-    <a class="item item-icon-left reserva " href="javascript:;" style="background-color: transparent;border:none;height:48px;">
-        <div class="row">
-            <div class="col">
-                <img src="img/profile-sitio.png" ng-if="vm.Sitio.image == 0" style="width:36px;height: 36px;" class="icon">
-                <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image == 1" style="width:36px;height: 36px;" class="icon">
-                <p style="margin-left: 36px;margin-top:-10px;">{{vm.Sitio.nombre}}</p>
-            </div>
-            <div class="col">
-                <img src="img/profile-cancha.png" ng-if="vm.Cancha.image == 0" style="width:36px;height: 36px;margin-left:50%" class="icon">
-                <img src="{{vm.Cancha.ruta}}" ng-if="vm.Cancha.image == 1" style="width:36px;height: 36px;margin-left:50%" class="icon">
-                <p style="margin-top:-10px;margin-left:44px;">{{vm.Cancha.nombre}}</p>
-            </div>    
-        </div>
+    
+        <table style="width:100%">
+            <tr>
+                <td width="50%">
+                    <a class="item item-icon-left reserva " href="javascript:;" style=" background-color:rgba(0,0,0,0.2) !important;border:none;height:46px;">
+                     <img src="img/profile-sitio.png" ng-if="vm.Sitio.image == 0" style="width:36px;height: 36px;margin-top:5px;" class="icon">
+                <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image == 1" style="width:36px;height: 36px;margin-top:5px;" class="icon">
+                <p style="margin-left:40px;">{{vm.Sitio.nombre}}</p>
+                    </a>
+                </td>
+                <td>
+                <a class="item item-icon-left reserva " href="javascript:;" style="margin-left:1px;background-color:rgba(0,0,0,0.2) !important;border:none;height:46px;">
+                <img src="img/profile-cancha.png" ng-if="vm.Cancha.image == 0" style="width:36px;height: 36px;margin-top:5px;" class="icon">
+                <img src="{{vm.Cancha.ruta}}" ng-if="vm.Cancha.image == 1" style="width:36px;height: 36px;margin-top:5px;" class="icon">
+                <p style="margin-left:40px;">{{vm.Cancha.nombre}}</p>
+                 </a>
+                </td>
+            </tr>
+        </table>
     </a>
     <div class="row">
         <div class="col col-10">
             <a class="button button-icon button-positive icon ion-ios-arrow-left" style="padding-top: 0" ng-click="vm.moveToFecha('-')"></a>
         </div>
         <div class="col col-50">
-            <input type="date" ng-model="vm.fecha" class="box-text" style="color:#FFF;margin-top: 5px;" ng-change="vm.viewAgenda(vm.Cancha)">
+            <input type="date" ng-model="vm.fecha" class="box-text fecha" style="color:#FFF;margin-top: 5px;" ng-change="vm.viewAgenda(vm.Cancha)">
         </div>
         <div class="col col-30" style="padding-top:15px;">
             {{vm.diaSemana}}

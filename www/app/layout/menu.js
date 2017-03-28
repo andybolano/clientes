@@ -37,7 +37,7 @@
                 $state.go('login', {}, {reload: true});
             },
                     function error(error) {
-                        messge(error.data.error);
+                        message(error.data.error);
                     });
         }
         function message(msg) {

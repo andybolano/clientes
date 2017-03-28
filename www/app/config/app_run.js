@@ -3,8 +3,9 @@
     angular
             .module('app')
             .run(appRun);
-    function appRun($ionicPlatform, $state, authService) {
+    function appRun($ionicPlatform, $state, authService,$ionicPopup) {
         $ionicPlatform.ready(function () {
+            
             if (window.cordova && window.cordova.plugins.Keyboard) {
                 cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
                 cordova.plugins.Keyboard.disableScroll(true);
@@ -12,14 +13,14 @@
             if (window.StatusBar) {
                 StatusBar.styleDefault();
             }
-            
-         var push = PushNotification.init({
+      
+        var push = PushNotification.init({
                 android: {
                         senderID: "991363187494",
                         vibrate : true,
                         sound:true,
                         alert: true,
-                        badge: true,
+                        badge: true
                 }
             });
             
@@ -27,11 +28,22 @@
               localStorage.setItem('regId',data.registrationId);
           });
             
-          push.on('notification', function(data) {
-               alert(JSON.stringify(data));
-          });
-
- 
+           push.on('notification', function(data) {
+                 var confirmPopup = $ionicPopup.confirm({
+                title: 'Notificacion',
+                template: data.message,
+                buttons: [
+                    {text: 'Entendido',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            $state.go('app.perfil');
+                        }
+                    },
+                ]
+              });
+          }); 
+          
+            hideSplash();
             autenticate();
         });
         function autenticate() {
@@ -57,5 +69,3 @@
         }
     }
 })();
-
-//cordova plugin add phonegap-plugin-push --variable SENDER_ID=991363187494 --save

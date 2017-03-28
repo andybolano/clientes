@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Birrias</title>
+    <link rel="manifest" href="manifest.json">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/icons.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="cordova.js"></script>
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/lib.js"></script>
+    <script src="app/config/general_config.js"></script>
+    <script src="app/config/routes_config.js"></script>
+    <script src="app/config/http_config.js"></script>
+    <script src="app/config/app_run.js"></script>
+    
+    <script src="app/layout/menu.js"></script>
+
+   <script src="app/auth/login.js"></script>
+   <script src="app/auth/registre.js"></script>
+   <script src="app/perfil/perfil.js"></script>
+   <script src="app/reservas/reservas.js"></script>
+   <script src="app/editarPerfil/editar.js"></script>
+   
+    <script src="app/services/authService.js"></script>
+    <script src="app/services/usuarioService.js"></script>
+    <script src="app/services/sessionService.js"></script>
+    <script src="app/services/sitiosService.js"></script>
+    <script src="app/services/canchasService.js"></script>
+    <script src="app/services/reservasService.js"></script>
+  </head>
+  
+  <body ng-app="app" class="platform-android4_2">
+    <ion-nav-view></ion-nav-view>
+  </body>
+</html>

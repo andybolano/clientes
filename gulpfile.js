@@ -13,6 +13,29 @@ var paths = {
 
 gulp.task('default', ['sass']);
 
+var replace = require('replace');
+var replaceFiles = ['./www/js/app.js'];
+
+gulp.task('add-proxy', function() {
+  return replace({
+    regex: "http://localhost/birrias/api/public/index.php/api",
+    replacement: "http://localhost:8100/birrias/api/public/index.php/api",
+    paths: replaceFiles,
+    recursive: false,
+    silent: false,
+  });
+})
+
+gulp.task('remove-proxy', function() {
+  return replace({
+    regex: "http://localhost:8100/birrias/api/public/index.php/api",
+    replacement: "http://localhost/birrias/api/public/index.php/api",
+    paths: replaceFiles,
+    recursive: false,
+    silent: false,
+  });
+})
+
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())

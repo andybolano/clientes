@@ -296,7 +296,7 @@ p{
     font-size:12px;
 }
 .item{
-    padding:10px;
+    padding: 10px;
 }
 .item p{
     color:#fcce58;
@@ -488,6 +488,12 @@ inp input[type="text"] {
     background-repeat: no-repeat;
     background-size: 25px 20px;
 }
+.fecha{
+    background-position: left center;
+    background-image: url(../img/calendar.svg);
+    background-repeat: no-repeat;
+    background-size: 25px 20px;
+}
 .hora {
     text-align: center;
     height: 40px;
@@ -516,17 +522,18 @@ inp input[type="text"] {
     box-shadow: inset 0px 10px 15px -10px rgba(0,0,0,0.75);
 }
 .notificacion{
+    text-align: center;
     position: absolute;
     color:#FFF;
     background-color:#ff7600;
     font-size:11px;
     font-family: "fg-demi-cond";
     border-radius:50%;
-    padding-top:2px;
-    line-height:11px;
-    width:14px;height: 14px;
+    line-height:14px;
+    width:14px;
+    height: 14px;
     margin-top:-3px;
-    margin-left:-5px;
+    margin-left:-2px;
 }
 
 

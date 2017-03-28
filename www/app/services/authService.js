@@ -39,7 +39,7 @@
                 }
             }
             function error(error) {
-                console.log(JSON.stringify(error))
+                console.log(JSON.stringify(error));
                 defered.reject(error);
             }
         }

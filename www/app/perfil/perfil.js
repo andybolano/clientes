@@ -47,6 +47,8 @@
             $ionicSlideBoxDelegate.slide(item);
         };
         
+  
+        
        function updateEstado(idReserva, estado) {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Confirmar Acción',
@@ -77,7 +79,7 @@
                             }
                             function error(error) {
                                 $ionicLoading.hide();
-                                mostrarAlert("Oops..", "No tuvimos un problems, intentelo de nuevo");
+                                mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                                 return;
                             }
                         }
@@ -97,7 +99,6 @@
             }
             function error(error) {
                 $ionicLoading.hide();
-                message("No tuvimos un problems, intentelo de nuevo");
                 return;
             }
         }
@@ -131,7 +132,6 @@
             }
             function error(error) {
                 $ionicLoading.hide();
-                mostrarAlert("Oops..", "No tuvimos un problems, intentelo de nuevo");
                 return;
             }
         }
@@ -155,7 +155,7 @@
             }
             function error(error) {
                 $ionicLoading.hide();
-                mostrarAlert("Oops..", "No tuvimos un problems, intentelo de nuevo");
+               mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
             }
         }

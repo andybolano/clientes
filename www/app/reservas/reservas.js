@@ -95,7 +95,7 @@
             }
             function error(error) {
                 $ionicLoading.hide();
-                mostrarAlert("Oops..", "No tuvimos un problems, intentelo de nuevo");
+                mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
             }
         }
@@ -111,7 +111,7 @@
             }
             function error(error) {
                 $ionicLoading.hide();
-                mostrarAlert("Oops..", "No tuvimos un problems, intentelo de nuevo");
+                mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
             }
         }
@@ -145,7 +145,7 @@
             }
             function error(error) {
                 $ionicLoading.hide();
-                mostrarAlert("Oops..", "No tuvimos un problems, intentelo de nuevo");
+                mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
             }
         }
@@ -233,7 +233,7 @@
                             }
                             function error(error) {
                                 $ionicLoading.hide();
-                                mostrarAlert("Oops..", "No tuvimos un problema, intentelo de nuevo");
+                                mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                                 return;
                             }
                         }

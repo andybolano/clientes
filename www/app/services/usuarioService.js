@@ -45,12 +45,14 @@
         function getReservasPendientes(idCliente) {
             var defered = $q.defer();
             var promise = defered.promise;
+              
             $http.get(API_URL + '/cliente/' + idCliente + '/reservas/pendientes').then(success, error);
             return promise;
             function success(p) {
                 defered.resolve(p);
             }
             function error(error) {
+              
                 defered.reject(error)
             }
         }

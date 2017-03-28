@@ -1,4 +1,10 @@
 {
   "name": "clientes",
   "app_id": "f4f46ef9"
+    "proxies": [
+        {
+          "path": "/api",
+          "proxyUrl": "http://localhost/birrias/api/public/index.php/api"
+        }
+    ]
 }
