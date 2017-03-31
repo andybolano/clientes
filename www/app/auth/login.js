@@ -19,7 +19,7 @@
             .module('auth')
             .controller('LoginCtrl', LoginCtrl);
     /* @ngInject */
-    function LoginCtrl($scope, authService, $state, HOME, $ionicLoading,$ionicHistory,$ionicPopup,$ionicSlideBoxDelegate) {
+    function LoginCtrl($scope, authService, $state, HOME, $cordovaOauth,$ionicLoading,$ionicHistory,$ionicPopup,$ionicSlideBoxDelegate,$http) {
         var vm = this;
        $scope.$on('$ionicView.beforeEnter', function (viewData) {
                 viewData.enableBack = true;
@@ -32,6 +32,24 @@
         vm.showLogo = showLogo;
         vm.message = message;
         vm.registrarUsuario = registrarUsuario;
+        vm.authFb = authFb;
+        
+        function authFb(){
+            $cordovaOauth.facebook("1623872244548223", ["email", "public_profile"], {redirect_uri: "http://localhost/callback"}).then(function(result){
+                    displayData(result.access_token);
+            },  function(error){
+                 mostrarAlert("Facebook" + error);
+            });
+        }
+        
+        function displayData(access_token){
+            $http.get("https://graph.facebook.com/v2.2/me", {params: {access_token: access_token, fields: "name,gender,location,picture", format: "json" }}).then(function(result) {
+                alert(JSON.stringify(result));
+            }, function(error) {
+                mostrarAlert("Facebook" + error);
+            });
+        }
+        
         function hideLogo() {
             vm.logo = false;
         };

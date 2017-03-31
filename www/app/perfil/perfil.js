@@ -31,18 +31,35 @@
             vm.historial = [];
             $scope.data = {};
             loadHistorialReservas();
+            loadReservasPendientes();
+            
+            var push = PushNotification.init({
+                android: {
+                        senderID: "991363187494",
+                        vibrate : true,
+                        sound:true,
+                        alert: true,
+                        badge: true
+                }
+            });
+            
+           push.on('notification', function(data) {
+                loadReservasPendientes();
+                $scope.changeSlide(1);
+          });
+            
         });
-  
+
+          
         function irReservar() {
             $state.go('app.reserva');
         }
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             loadPerfil();
-             loadReservasPendientes();
+             
         });
         $scope.changetab = function (item) {
             $ionicTabsDelegate.select(item);
-           
         };
         $scope.changeSlide = function (item) {
             $ionicTabsDelegate.select(item);

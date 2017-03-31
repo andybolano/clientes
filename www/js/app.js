@@ -7,7 +7,8 @@
             'perfil',
             'reserva',
             'editar',
-            'contacto'
+            'contacto',
+            'ngCordovaOauth'
         ]);
 
 app.config(function($ionicConfigProvider) {
