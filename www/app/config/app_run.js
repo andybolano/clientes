@@ -14,7 +14,7 @@
                 StatusBar.styleDefault();
             }
       
-     /*  var push = PushNotification.init({
+      var push = PushNotification.init({
                 android: {
                         senderID: "991363187494",
                         vibrate : true,
@@ -42,7 +42,7 @@
                     },
                 ]
               });
-          }); */
+          }); 
           
             hideSplash();
             autenticate();
