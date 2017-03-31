@@ -51,7 +51,7 @@
                 message("Ingresar Contraseña");
                 return 0;
             }
-            $ionicLoading.show();
+            loadingShow('Autenticando...');
             vm.usuario.regId = localStorage.getItem('regId');
             authService.login(vm.usuario).then(success, error);
             function success(d) {
@@ -67,7 +67,6 @@
                 }
             }
             function error(error) {
-                vm.usuario = {};
                 $ionicLoading.hide();
                 if (error.status === 401) {
                     message("No pudimos autenticarte, intentelo de nuevo");
@@ -81,7 +80,8 @@
                 message("Faltan campos por digilenciar");
                 return 0;
             }
-             $ionicLoading.show();
+               loadingShow('Registrando...');
+            vm.usuario.telefono = vm.usuario.telefono.toString();
             authService.register(vm.usuario).then(success, error);
             function success(p) {
                  $ionicLoading.hide();
@@ -96,7 +96,7 @@
                     vm.usuario = {};
                     return;
                 }
-                 vm.usuario = {};
+             
                 mostrarAlert("Fallo en el Registro", "No se ha podido realizar el registro, intente mas tarde");
             }
         }
@@ -111,6 +111,14 @@
             });
             alertPopup.then(function (res) {
             });
+        }
+        
+         function loadingShow(msg){
+             $ionicLoading.show({
+                template: '<div class="loading-animation"></div> <div class="mensaje-loading">'+msg+'</div>',
+              }).then(function(){
+                 
+              });
         }
     }
 })();

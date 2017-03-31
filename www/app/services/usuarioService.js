@@ -102,6 +102,10 @@
                 defered.reject(error);
             }
         }
+        
+        function message(msg) {
+            $ionicLoading.show({template: msg, noBackdrop: true, duration: 2000});
+        }
     }
 })();
 

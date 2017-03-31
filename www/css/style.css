@@ -119,12 +119,10 @@ h5{
     font-family: 'fg-demi-cond';
     font-size: 1.3em;
 }
-/*
-.loading-container{
+/*.loading-container{
   -webkit-align-items: flex-start;
   -moz-align-items: flex-start;
   align-items: flex-start;
-  padding-top: 54px;
 }
   .loading{
         border-radius: 50px;
@@ -541,3 +539,24 @@ inp input[type="text"] {
 
 
 
+.loading-animation{
+    height:30px;
+    width: 30px;
+     background-image: url(../img/logo_min.png);
+     background-repeat:no-repeat;
+     background-size: 30px 30px;
+     -webkit-animation-name: rotate;
+-webkit-animation-duration: 1s; /** Aquí controlamos la velocidad de la animación **/
+-webkit-animation-iteration-count: infinite;
+-webkit-animation-timing-function: linear;
+}
+@-webkit-keyframes rotate {
+from {-webkit-transform: rotate(0deg);} /*** Estado inicial de la rotación ***/
+to {-webkit-transform: rotate(360deg);} /*** Estado final de la rotación ***/
+}
+
+.mensaje-loading{
+   font-family: 'Quick-regular';
+   margin-left:35px;
+  margin-top: -25px;
+}

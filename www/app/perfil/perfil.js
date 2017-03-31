@@ -32,12 +32,13 @@
             $scope.data = {};
             loadHistorialReservas();
         });
+  
         function irReservar() {
             $state.go('app.reserva');
         }
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             loadPerfil();
-            loadReservasPendientes();
+             loadReservasPendientes();
         });
         $scope.changetab = function (item) {
             $ionicTabsDelegate.select(item);
@@ -63,7 +64,7 @@
                         text: 'Si, seguír',
                         type: 'button-positive',
                         onTap: function (e) {
-                            $ionicLoading.show();
+                           loadingShow('Actualizando ...');
                             reservasService.update(idReserva, estado).then(success, error);
                             function success(d) {
                                 if (estado === 'cancelada') {
@@ -123,13 +124,16 @@
         }
         ;
         function loadHistorialReservas() {
-            $ionicLoading.show();
+           loadingShow('Cargando historial...');
             usuarioService.getReservasHistorial(sessionService.getIdCliente()).then(success, error);
             function success(d) {
                 vm.historial = d.data;
                 $ionicLoading.hide();
             }
             function error(err) {
+                if(err.data == null){
+                    return;
+                }
                   if(err.data.status == 401){
                      mostrarAlert("Oops..", err.data.error);
                      localStorage.clear();
@@ -157,14 +161,16 @@
         }
         function loadReservasPendientes() {
           
-            $ionicLoading.show();
+           loadingShow('Cargando reservas...');
            var promisePost =  usuarioService.getReservasPendientes(sessionService.getIdCliente());
             promisePost.then(function (d) {
           
                 vm.reservasPendientes = d.data;
                 $ionicLoading.hide();
             }, function (err) {
-      
+                if(err.data == null){
+                    return;
+                }
                 if(err.data.status == 401){
                      mostrarAlert("Oops..", err.data.error);
                      localStorage.clear();
@@ -181,6 +187,14 @@
                 $scope.$broadcast('scroll.refreshComplete');
             });
       
+        }
+        
+        function loadingShow(msg){
+             $ionicLoading.show({
+                template: '<div class="loading-animation"></div> <div class="mensaje-loading">'+msg+'</div>',
+              }).then(function(){
+                 
+              });
         }
         function mostrarAlert(titulo, contenido) {
             var alertPopup = $ionicPopup.alert({

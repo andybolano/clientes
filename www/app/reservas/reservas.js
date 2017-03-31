@@ -27,6 +27,7 @@
             vm.converToFecha = converToFecha;
             vm.comprobarReservada = comprobarReservada;
             vm.isEmptyJSON = isEmptyJSON;
+            vm.conexion = true;
             vm.sitios = [];
             vm.Sitio = {};
             vm.canchas = [];
@@ -87,20 +88,33 @@
             
         };
         function getSitios() {
-            $ionicLoading.show();
-            sitiosService.get().then(success, error);
-            function success(d) {
+            if(!localStorage.getItem('sitios')){
+              loadingShow('Cargando Sitios...');
+            }else{
+                vm.sitios = JSON.parse(localStorage.getItem('sitios'));
+            }
+           var promisePost = sitiosService.get();
+            promisePost.then(function (d) {
                 $ionicLoading.hide();
                 vm.sitios = d.data;
-            }
-            function error(error) {
+                localStorage.setItem('sitios',JSON.stringify(vm.sitios));
+                 vm.conexion = true;
+            }, function (err) {
+                
+                if(err == 'time'){
+                    vm.conexion = false;
+                    message("Conexión debil, intentalo nuevamente");
+                    return;
+                }
                 $ionicLoading.hide();
                 mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
-            }
+             }).finally(function () {
+                $scope.$broadcast('scroll.refreshComplete');
+            });
         }
         function viewCanchas(sitio) {
-            $ionicLoading.show();
+           loadingShow('Cargando canchas...');
             vm.Sitio = sitio;
             $scope.changeSlide(1);
             canchasService.getCanchas(sitio.id).then(success, error);
@@ -110,6 +124,7 @@
                 vm.precios = d.data.precios;
             }
             function error(error) {
+               
                 $ionicLoading.hide();
                 mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
@@ -133,7 +148,7 @@
         }
         function viewAgenda(cancha) {
             diaSemana();
-            $ionicLoading.show();
+             loadingShow('Cargando agenda...');
             vm.Cancha = cancha;
             vm.hora = [];
             vm.horas = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
@@ -144,6 +159,7 @@
                  $scope.changeSlide(2);
             }
             function error(error) {
+               
                 $ionicLoading.hide();
                 mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
                 return;
@@ -218,7 +234,7 @@
                         text: 'Si, seguír',
                         type: 'button-positive',
                         onTap: function (e) {
-                            $ionicLoading.show();
+                            loadingShow('Procesando reserva...');
                             reservasService.post(object).then(success, error);
                             function success(d) {
                                 $ionicLoading.hide();
@@ -241,6 +257,14 @@
                     }
                 ]
             });
+        }
+        
+         function loadingShow(msg){
+             $ionicLoading.show({
+                template: '<div class="loading-animation"></div> <div class="mensaje-loading">'+msg+'</div>',
+              }).then(function(){
+                 
+              });
         }
         function mostrarAlert(titulo, contenido) {
             var alertPopup = $ionicPopup.alert({

@@ -12,14 +12,14 @@
         function get(){
             var defered = $q.defer();
             var promise = defered.promise;
-             var defered = $q.defer();
+            var defered = $q.defer();
             var promise = defered.promise;
             
               var timeoutPromise = $timeout(function ()
             {
                 canceler.resolve();
                 $ionicLoading.hide();
-                message("verifica tu conexión, e intentalo nuevamente");
+                message("Conexión debil, intentalo nuevamente");
             },10000);
             var canceler = $q.defer();
             
@@ -30,11 +30,17 @@
                 defered.resolve(p);
             }
             function error(error) {
+                error = 'time';
                 $timeout.cancel(timeoutPromise);
                 defered.reject(error);
             }
         };
+         function message(msg) {
+            $ionicLoading.show({template: msg, noBackdrop: true, duration: 2000});
+        }
     }
+    
+   
 })();
 
 

@@ -1,4 +1,11 @@
 <ion-content ng-class="transition" on-swipe-right="goBack()" on-swipe-left="goForward()">
+    <div ng-if='!vm.conexion'>
+        <img src="img/wifi.svg" style='width:60%;margin-top: 10%'>
+    </div>
+       <ion-refresher
+    pulling-text="Cargar sitios..."
+    on-refresh="vm.getSitios()">
+  </ion-refresher>
     <div class="list">
         <a class="item item-thumbnail-left reserva"  ng-repeat="item in vm.sitios" ng-click="vm.viewCanchas(item)">
             <img src="img/profile-sitio.png" ng-if="item.image == 0" style="width:68px;height: 68px;">
