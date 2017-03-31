@@ -1,5 +1,5 @@
 <ion-content ng-class="transition" overflow-scroll="true" on-swipe-right="goBack()" on-swipe-left="goForward()">
-    
+     <div ng-if="!vm.isEmptyJSON(vm.Cancha)">
         <table style="width:100%">
             <tr>
                 <td width="50%">
@@ -57,4 +57,9 @@
             </a> 
         </li>
     </ul>
+     </div>
+    <div ng-if="vm.isEmptyJSON(vm.Cancha)">
+         <img src="img/calendar.svg" width="70%;" style="margin-top:10%;">
+        <h3>Escoge una cancha para ver su agenda!</h3>
+    </div>   
 </ion-content>

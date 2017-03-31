@@ -16,17 +16,59 @@
             .module('editar')
             .controller('editarCtrl', editarCtrl);
     /* @ngInject */
-    function editarCtrl($scope, usuarioService, sessionService, $ionicLoading, $ionicPopup) {
+    function editarCtrl($scope, usuarioService, sessionService, $ionicLoading, $ionicPopup,API_URL,$cordovaFileTransfer) {
         var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.Usuario = {};
             vm.Usuario = sessionService.getUser();
             vm.Usuario.email = sessionService.getEmail();
+            vm.buscarAlbum = buscarAlbum;
             vm.update = update;
         });
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             $scope.popover.hide();
         });
+       function buscarAlbum(){
+                navigator.camera.getPicture( onSuccess, onError, { 
+                quality : 50,
+                destinationType : Camera.DestinationType.FILE_URI,
+                sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+                allowEdit : false,
+                encodingType: Camera.EncodingType.JPEG         
+            });
+        }
+        function onSuccess(imageURI){
+        var image = document.getElementById('Imagen');
+        image.src = imageURI;
+            subirImagen(imageURI);
+        }
+        function onError(msg){
+         navigator.notification.alert("Error capturando foto "+ msg);
+        }
+
+        function subirImagen(imageURI){
+            $ionicLoading.show();
+           var options = {
+                fileKey: "imagen",
+                fileName: vm.Usuario.id+".jpg",
+                chunkedMode: false,
+                mimeType: "image/jpeg"
+            };
+             $cordovaFileTransfer.upload(API_URL+"/cliente/"+vm.Usuario.id+"/image",imageURI, options).then(function(p) {
+             $ionicLoading.hide();
+              message("Imagen Actualizada");
+               var data = JSON.parse(localStorage.getItem('data'));
+               data.image = 1;
+               data.url = "https://birriassoccer.com/images/clientes/"+vm.Usuario.id+".jpg"
+               localStorage.setItem('data',JSON.stringify(data));
+            }, function(err) {
+                 message("Error al actualizar imagen");
+            }, function (progress) {
+                // constant progress updates
+            })
+        }
+        
+
         function update(){
              if (vm.Usuario.clave === undefined || vm.Usuario.nombres === undefined || vm.Usuario.apellidos === undefined || vm.Usuario.email === undefined || vm.Usuario.telefono === undefined) {
                 message("Faltan campos por digilenciar");

@@ -19,8 +19,8 @@
                     <a href="javascript:;" class="estado csa" ng-if="item.estado === 'confirmadasinabono'" ng-click="vm.mostrarAlert('CONFIRMADA SIN ABONO','Has confirmado tu reserva, pero a un no se reporta que hayas abonado dinero.')">CONFIRMADA SIN ABONO</a>
                     <a href="javascript:;" class="estado cc" ng-if="item.estado === 'confirmadaconabono'" ng-click="vm.mostrarAlert('CONFIRMADA CON ABONO','Has confirmado tu reserva, y has abononado, te esperamos en nuestro sitio para darte el mejor servicio.')">CONFIRMADA CON ABONO</a>
                     <span class="money">Valor: {{item.precio | currency:undefined:0}}</span>
-                    <span class="money">Abo. reque.: {{item.abonoRequerido | currency:undefined:0}}</span>
-                   <span class="money l">Abo. liqui: {{item.abonoLiquidado | currency:undefined:0}}</span>
+                    <span class="money">Abo. reque. : {{item.abonoRequerido | currency:undefined:0}}</span>
+                   <span class="money l">Abo. liqui. : {{item.abonoLiquidado | currency:undefined:0}}</span>
                 </td>
             </tr>
 

@@ -12,7 +12,9 @@
             <div class="col">
                 <div class="sombra-photo">
                     <div class="content-circle circle">
-                        <img ng-src="img/default.png" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="img">
+                          <img ng-src="{{vm.Usuario.url}}" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="Imagen" ng-if="vm.Usuario.image == 1" ng-click="vm.buscarAlbum();">
+                          <img ng-src="img/default.png" alt="" class="circle responsive-img img-perfil" width="100%" height="100%" id="Imagen" ng-if="vm.Usuario.image == 0 " ng-click="vm.buscarAlbum();">
+           
                     </div>
                 </div>
             </div>

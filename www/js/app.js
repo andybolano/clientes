@@ -2,11 +2,12 @@
     "use strict";
   var app =  angular.module("app", [
             'ionic',
-          
+            'ngCordova',
             'auth',
             'perfil',
             'reserva',
-            'editar'
+            'editar',
+            'contacto'
         ]);
 
 app.config(function($ionicConfigProvider) {

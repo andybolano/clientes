@@ -1,0 +1,38 @@
+<ion-view title="Contáctanos" cache-view="false" class="bg">
+    <ion-nav-bar class="degrade-birrias">
+        <ion-nav-buttons>
+            <a class="button button-icon icon ion-ios-arrow-thin-left" ui-sref="app.perfil" style="color:#FFF"></a>
+        </ion-nav-buttons>
+        <ion-nav-title>
+            Contáctanos
+        </ion-nav-title>
+    </ion-nav-bar> 
+    <ion-content overflow-scroll="true" class="center  has-header">
+        <br>
+        <p style="font-family: 'Quick-light';font-size:14px;">
+            Inquietudes? , sugerencias?,<br> con gusto las atenderemos.
+        </p>
+        <img src="img/contacto.svg" style="width:50%;margin-top:3%">
+        <div style='width:90%;margin-left:5%;'>
+            <textarea class='box-text' style='height:100px;resize: none;' ng-model="vm.mensaje" placeholder="Escribe tu mensaje aquí...">
+            
+        </textarea>
+        <button class="button btn-secundary button-assertive" style="width: 100%" ng-click="vm.enviar()">Enviar Mensaje</button>
+        <div class='row' style='margin-top: 5px;'>
+            <div class='col' style='font-size:12px;'>
+               
+                Escríbenos a <br><a href="javascript:;" style='color:#19cf2f;text-decoration: none'>info@birriassoccer.com</a>
+            </div>
+            <div class='col' style='font-size:12px;'>
+                Atendemos tu llamada<br>
+                <a href="javascript:;" style='color:#19cf2f;text-decoration: none'>(+57) 3106440539</a>
+            </div>
+        </div>
+        <div style='margin-top: 20px;margin-left:30%'>
+                <img src="img/logo_min.png" alt="" width='20px;' style='float: left'/>
+                <span style='float: left;margin-left:5px;'>Birrias © 2017</span>
+                
+        </div>
+        </div>
+    </ion-content>
+</ion-view> 

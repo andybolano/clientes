@@ -30,6 +30,7 @@
             vm.reservasPendientes = [];
             vm.historial = [];
             $scope.data = {};
+            loadHistorialReservas();
         });
         function irReservar() {
             $state.go('app.reserva');
@@ -37,20 +38,16 @@
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             loadPerfil();
             loadReservasPendientes();
-            loadHistorialReservas();
-            ;
         });
-        
-         $scope.changetab = function (item) {
+        $scope.changetab = function (item) {
             $ionicTabsDelegate.select(item);
+           
         };
         $scope.changeSlide = function (item) {
             $ionicTabsDelegate.select(item);
             $ionicSlideBoxDelegate.slide(item);
         };
-        
-  
-        
+
        function updateEstado(idReserva, estado) {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Confirmar Acción',
@@ -132,9 +129,19 @@
                 vm.historial = d.data;
                 $ionicLoading.hide();
             }
-            function error(error) {
-                $ionicLoading.hide();
-                return;
+            function error(err) {
+                  if(err.data.status == 401){
+                     mostrarAlert("Oops..", err.data.error);
+                     localStorage.clear();
+                     sessionStorage.clear();
+                    $state.go('login', {}, {reload: true});
+                    $ionicHistory.clearCache();
+                    $ionicHistory.clearHistory();
+                    $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+                }
+               $ionicLoading.hide();
+               mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
+               return;
             }
         }
         function mostrarAlert(titulo, contenido) {

@@ -26,6 +26,7 @@
             vm.moveToFecha = moveToFecha;
             vm.converToFecha = converToFecha;
             vm.comprobarReservada = comprobarReservada;
+            vm.isEmptyJSON = isEmptyJSON;
             vm.sitios = [];
             vm.Sitio = {};
             vm.canchas = [];
@@ -67,7 +68,6 @@
         function message(msg) {
             $ionicLoading.show({template: msg, noBackdrop: true, duration: 2000});
         }
-        
         $scope.changetab = function (item) {
             if (isEmptyJSON(vm.Sitio) && item === 1) {
                 $ionicSlideBoxDelegate.slide(0);
@@ -197,6 +197,7 @@
                 diaSemana: vm.diaSemana,
                 precio: precio
             }
+            
             var info = "<table width='100%' style='text-align:left'><tr><td width='30%'><b>Sitio:</b></td><td> " + vm.Sitio.nombre + "</td></tr>" +
                     "<tr><td><b>Cancha : </b></td><td>" + vm.Cancha.nombre + "</td></tr>" +
                     "<tr><td><b>Fecha : </b></td><td>" + vm.fecha.toDateInputValue() + " - " + vm.diaSemana + "</td></tr>" +

@@ -4,7 +4,7 @@
             .module('app')
             .service('reservasService', reservasService);
     /* @ngInject */
-    function reservasService($http, API_URL, $q) {
+    function reservasService($http, API_URL, $q, $ionicLoading, $timeout) {
 
         var service = {
             getByCancha: getByCancha,
@@ -25,14 +25,25 @@
             }
         }
         function getByCancha(idCancha, fecha) {
+            
+              var timeoutPromise = $timeout(function ()
+            {
+                canceler.resolve();
+                $ionicLoading.hide();
+                message("verifica tu conexión, e intentalo nuevamente");
+            },10000);
+            
+            var canceler = $q.defer();
             var defered = $q.defer();
             var promise = defered.promise;
-            $http.get(API_URL + '/reservas/cancha/' + idCancha + '/fecha/' + fecha).then(success, error);
+            $http.get(API_URL + '/reservas/cancha/' + idCancha + '/fecha/' + fecha ,{timeout: canceler.promise}).then(success, error);
             return promise;
             function success(p) {
+                $timeout.cancel(timeoutPromise);
                 defered.resolve(p);
             }
             function error(error) {
+                $timeout.cancel(timeoutPromise);
                 defered.reject(error)
             }
         }
@@ -43,7 +54,8 @@
             var object = {
                 estado: estado,
                 abono: false,
-                valor: false
+                valor: false,
+                detonador:2
             }
             $http.put(API_URL + '/reservas/' + idReserva, object).then(success, error);
             return promise;

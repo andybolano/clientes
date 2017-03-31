@@ -1,4 +1,5 @@
-<ion-content ng-class="transition"  on-swipe-right="goBack()" on-swipe-left="goForward()">   
+<ion-content ng-class="transition"  on-swipe-right="goBack()" on-swipe-left="goForward()">  
+   <div ng-if="!vm.isEmptyJSON(vm.Sitio)">
     <a class="item item-icon-left reserva" href="javascript:;" style=" background-color:rgba(0,0,0,0.2) !important;border:none;height:46px;">
         <img src="img/profile-sitio.png" ng-if="vm.Sitio.image == 0" style="width:36px;height: 36px;margin-top:5px;" class="icon">
         <img src="{{vm.Sitio.ruta}}" ng-if="vm.Sitio.image == 1" style="width:36px;height: 36px;margin-top:5px;" class="icon">
@@ -15,5 +16,10 @@
                 <p>Jugadores por equipo: {{item.jugadores}}</p>
             </div>
         </a>
-    </div>  
+    </div> 
+   </div>
+    <div ng-if="vm.isEmptyJSON(vm.Sitio)">
+        <img src="img/cancha.svg" width="70%;" style="margin-top:10%;">
+        <h3>Escoge un sitio para ver sus canchas!</h3>
+    </div>
 </ion-content>
