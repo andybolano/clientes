@@ -25,7 +25,7 @@
             });
             
           push.on('registration', function(data) {
-              localStorage.setItem('regId',data.registrationId);
+              window.localStorage.setItem('regId',data.registrationId);
           });
             
            push.on('notification', function(data) {

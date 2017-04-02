@@ -88,16 +88,16 @@
             
         };
         function getSitios() {
-            if(!localStorage.getItem('sitios')){
+            if(!window.localStorage.getItem('sitios')){
               loadingShow('Cargando Sitios...');
             }else{
-                vm.sitios = JSON.parse(localStorage.getItem('sitios'));
+                vm.sitios = JSON.parse(window.localStorage.getItem('sitios'));
             }
            var promisePost = sitiosService.get();
             promisePost.then(function (d) {
                 $ionicLoading.hide();
                 vm.sitios = d.data;
-                localStorage.setItem('sitios',JSON.stringify(vm.sitios));
+                window.localStorage.setItem('sitios',JSON.stringify(vm.sitios));
                  vm.conexion = true;
             }, function (err) {
                 

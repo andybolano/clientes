@@ -16,33 +16,33 @@
         };
         return service;
         function isLoggedIn(){
-          return localStorage.getItem('userIsLogin') !== null;  
+          return window.localStorage.getItem('userIsLogin') !== null;  
         };
          function getToken(){
-          if(localStorage.getItem('token') !== null){
-              return localStorage.getItem('token');
+          if(window.localStorage.getItem('token') !== null){
+              return window.localStorage.getItem('token');
           } 
         };
         function getEmail(){
-          if(localStorage.getItem('email') !== null){
-              return localStorage.getItem('email');
+          if(window.localStorage.getItem('email') !== null){
+              return window.localStorage.getItem('email');
           } 
         };
         function getIdUser(){
-           if(localStorage.getItem('data') !== null){
+           if(window.localStorage.getItem('data') !== null){
                 var data = JSON.parse(localStorage.getItem('data'));
                 return data.idUsuario;
            } 
         }
         function getIdCliente(){
-           if(localStorage.getItem('data') !== null){
+           if(window.localStorage.getItem('data') !== null){
                 var data = JSON.parse(localStorage.getItem('data'));
                 return data.id;
            } 
         }
          function getUser(){
-           if(localStorage.getItem('data') !== null){
-                var data = JSON.parse(localStorage.getItem('data'));
+           if(window.localStorage.getItem('data') !== null){
+                var data = JSON.parse(window.localStorage.getItem('data'));
                 return data;
            } 
         }

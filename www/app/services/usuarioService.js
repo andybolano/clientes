@@ -27,7 +27,7 @@
             }
         }
         function getUsuario() {
-            var usuario = JSON.parse(localStorage.getItem('usuario'));
+            var usuario = JSON.parse(window.localStorage.getItem('usuario'));
             return usuario[0];
         }
         ;

@@ -57,10 +57,10 @@
              $cordovaFileTransfer.upload(API_URL+"/cliente/"+vm.Usuario.id+"/image",imageURI, options).then(function(p) {
              $ionicLoading.hide();
               message("Imagen Actualizada");
-               var data = JSON.parse(localStorage.getItem('data'));
+               var data = JSON.parse(window.localStorage.getItem('data'));
                data.image = 1;
                data.url = "https://birriassoccer.com/images/clientes/"+vm.Usuario.id+".jpg"
-               localStorage.setItem('data',JSON.stringify(data));
+               window.localStorage.setItem('data',JSON.stringify(data));
             }, function(err) {
                  message("Error al actualizar imagen");
             }, function (progress) {
@@ -80,8 +80,8 @@
             usuarioService.update(vm.Usuario).then(success, error);
             function success(p) {
              message(p.data.message);
-             localStorage.setItem('data', JSON.stringify(p.data.request));
-             localStorage.setItem('email', p.data.email);
+             window.localStorage.setItem('data', JSON.stringify(p.data.request));
+             window.localStorage.setItem('email', p.data.email);
               vm.Usuario.clave = "";
               vm.Usuario.newClave = "";
             }

@@ -107,8 +107,8 @@
         function getUsuarioServer() {
             usuarioService.getUsuarioServer(sessionService.getIdCliente()).then(success, error);
             function success(d) {
-                localStorage.removeItem('data');
-                localStorage.setItem('data', JSON.stringify(d.data.cliente));
+                window.localStorage.removeItem('data');
+                window.localStorage.setItem('data', JSON.stringify(d.data.cliente));
                 setTimeout(function () {
                     loadPerfil();
                 }, 2000)
@@ -153,8 +153,8 @@
                 }
                   if(err.data.status == 401){
                      mostrarAlert("Oops..", err.data.error);
-                     localStorage.clear();
-                     sessionStorage.clear();
+                     window.localStorage.clear();
+                     window.sessionStorage.clear();
                     $state.go('login', {}, {reload: true});
                     $ionicHistory.clearCache();
                     $ionicHistory.clearHistory();
@@ -190,8 +190,8 @@
                 }
                 if(err.data.status == 401){
                      mostrarAlert("Oops..", err.data.error);
-                     localStorage.clear();
-                     sessionStorage.clear();
+                     window.localStorage.clear();
+                     window.sessionStorage.clear();
                     $state.go('login', {}, {reload: true});
                     $ionicHistory.clearCache();
                     $ionicHistory.clearHistory();

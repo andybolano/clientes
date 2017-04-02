@@ -10,11 +10,31 @@
             logout: logout,
             autologin: autologin,
             register: register,
-            currentUser: currentUser
+            currentUser: currentUser,
+            registroFacebook:registroFacebook
         };
         return service;
         
-
+        function registroFacebook(user_data){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            alert(JSON.stringify(user_data));
+            $http.post(API_URL + '/cliente/facebook', user_data).then(success, error);
+            return promise;
+            function success(p) {
+                if (p.data.respuesta === true) {
+                       storeUser(p.data);
+                       defered.resolve(currentUser());
+                 } else {
+                     defered.resolve(p.data);
+                }
+            }
+            function error(error) {
+                destroyCredenciales();
+                defered.reject(error);
+            }
+        }
+ 
         function login(usuario) {
             var defered = $q.defer();
             var promise = defered.promise;
@@ -92,19 +112,19 @@
         }
         ;
         function destroyCredenciales() {
-            localStorage.clear();
-            sessionStorage.clear();
+            window.localStorage.clear();
+            window.sessionStorage.clear();
         }
         function storeUser(data) {
             var data = JSON.parse("[" + data.user + "]");
-            localStorage.setItem('data', JSON.stringify(data[0].cliente));
-            localStorage.setItem('email', data[0].email);
-            localStorage.setItem('token', data[0].token);
-            localStorage.setItem('userIsLogin', true);
+            window.localStorage.setItem('data', JSON.stringify(data[0].cliente));
+            window.localStorage.setItem('email', data[0].email);
+            window.localStorage.setItem('token', data[0].token);
+            window.localStorage.setItem('userIsLogin', true);
         }
         ;
         function currentUser() {
-            return JSON.parse(localStorage.getItem('data'));
+            return JSON.parse(window.localStorage.getItem('data'));
         }
         ;
     }
