@@ -31,7 +31,7 @@
             vm.historial = [];
             $scope.data = {};
             loadHistorialReservas();
-            loadReservasPendientes();
+           
             
             var push = PushNotification.init({
                 android: {
@@ -45,6 +45,19 @@
             
            push.on('notification', function(data) {
                 loadReservasPendientes();
+                 var confirmPopup = $ionicPopup.confirm({
+                title: 'Notificación',
+                template: data.message,
+                buttons: [
+                    {text: 'Entendido',
+                        type: 'button-positive',
+                        onTap: function (e) {
+                            $state.go('app.perfil');
+                         
+                        }
+                    },
+                ]
+              });
                 $scope.changeSlide(1);
           });
             
@@ -56,7 +69,7 @@
         }
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             loadPerfil();
-             
+            loadReservasPendientes();
         });
         $scope.changetab = function (item) {
             $ionicTabsDelegate.select(item);

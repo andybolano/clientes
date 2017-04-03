@@ -45,19 +45,27 @@
     getFacebookProfileInfo(authResponse)
     .then(function(profileInfo) {
         var object = {
-            authResponse: authResponse,userID: 
-            profileInfo.id,name:
-            profileInfo.name,
+            authResponse: authResponse,
+            userID: profileInfo.id,
+            name:profileInfo.name,
+            first_name:profileInfo.first_name,
+            last_name:profileInfo.last_name,
             email: profileInfo.email,
+            regId:localStorage.getItem('regId'),
             picture : "http://graph.facebook.com/" + authResponse.userID + "/picture?type=large"
         }
          authService.registroFacebook(object).then(success, error);
             function success(p) {
                 $ionicLoading.hide();
-                mostrarAlert("Felicidades!", p.data.message);
-                $ionicHistory.clearHistory();
-                $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
-                $state.go(HOME); 
+                 if (p.respuesta === false) {
+                    mostrarAlert("Oops...", p.message);
+                    return false;
+                } else {
+                    mostrarAlert("Felicidades!", p.message);
+                    $state.go(HOME);
+                    $ionicHistory.clearHistory();
+                    $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
+                }
             }
             function error(error) {
                 $ionicLoading.hide();
@@ -84,7 +92,7 @@
   // This method is to get the user profile info from the facebook api
   var getFacebookProfileInfo = function (authResponse) {
     var info = $q.defer();
-    facebookConnectPlugin.api('/me?fields=email,name&access_token=' + authResponse.accessToken, null,
+    facebookConnectPlugin.api('/me?fields=email,name,first_name,last_name&access_token=' + authResponse.accessToken, null,
       function (response) {
         info.resolve(response);
       },

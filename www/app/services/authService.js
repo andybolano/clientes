@@ -18,13 +18,12 @@
         function registroFacebook(user_data){
             var defered = $q.defer();
             var promise = defered.promise;
-            alert(JSON.stringify(user_data));
             $http.post(API_URL + '/cliente/facebook', user_data).then(success, error);
             return promise;
             function success(p) {
                 if (p.data.respuesta === true) {
                        storeUser(p.data);
-                       defered.resolve(currentUser());
+                       defered.resolve(p.data);
                  } else {
                      defered.resolve(p.data);
                 }
@@ -121,6 +120,7 @@
             window.localStorage.setItem('email', data[0].email);
             window.localStorage.setItem('token', data[0].token);
             window.localStorage.setItem('userIsLogin', true);
+           ;
         }
         ;
         function currentUser() {
