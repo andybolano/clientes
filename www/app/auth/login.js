@@ -85,6 +85,7 @@
 
   // This is the fail callback from the login method
   var fbLoginError = function(error){
+        alert(JSON.stringify(error))
     mostrarAlert("FACEBOOK", 'Problemas al autenticar, tambien puedes registrarte directamente con nuestra app.');
     $ionicLoading.hide();
   };
@@ -97,7 +98,6 @@
         info.resolve(response);
       },
       function (response) {
-	alert(response);
         info.reject(response);
       }
     );
@@ -163,7 +163,7 @@
             vm.usuario.telefono = vm.usuario.telefono.toString();
             authService.register(vm.usuario).then(success, error);
             function success(p) {
-                 $ionicLoading.hide();
+                $ionicLoading.hide();
                 mostrarAlert("Felicidades!", p.data.message);
                 $state.go('login');
                 vm.usuario = {};

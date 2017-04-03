@@ -6,10 +6,10 @@
         <p style="margin-left: 46px;">{{vm.Sitio.nombre}}</p>
     </a>
     <div class="list">
-        <a class="item item-thumbnail-left reserva"  ng-repeat="item in vm.canchas" ng-click="vm.viewAgenda(item)">
+        <a class="item item-thumbnail-left reserva"  ng-repeat="item in vm.canchas">
             <img src="img/profile-cancha.png" ng-if="item.image == 0" style="width:68px;height: 68px;">
-            <img src="{{item.ruta}}" ng-if="item.image == 1" style="width:68px;height: 68px;">
-            <div style="margin-left:84px;">
+            <img src="{{item.ruta}}" ng-if="item.image == 1" style="width:68px;height: 68px;" ng-click='openModal(item.ruta)'>
+            <div style="margin-left:84px;"  ng-click="vm.viewAgenda(item)">
                 <h3>{{item.nombre}}</h3>
                 <p>{{item.largo}}m x {{item.ancho}}m</p>
                 <p>Techo: <span ng-if="item.techo == 1">SI</span><span ng-if="item.techo == 0">NO</span></p>

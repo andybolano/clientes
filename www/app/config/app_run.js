@@ -42,7 +42,7 @@
                     },
                 ]
               });
-          }); 
+          });
           
             hideSplash();
             autenticate();

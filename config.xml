@@ -19,7 +19,7 @@
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#b15003" />
     <preference name="StatusBarStyle" value="lightcontent" />
-    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreen" value="none" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>

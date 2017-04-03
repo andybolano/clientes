@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "991363187494",
+    "firebase_url": "https://birrias-de4ff.firebaseio.com",
+    "project_id": "birrias-de4ff",
+    "storage_bucket": "birrias-de4ff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:991363187494:android:f6bc8988ee91edd3",
+        "android_client_info": {
+          "package_name": "com.ionicframework.birrias578767"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "991363187494-uqv5j1aduafj26dj6u7odhjri6glk3pf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqa_IS4uG1e8PrtPZ2dL-SWbauBdhe628"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

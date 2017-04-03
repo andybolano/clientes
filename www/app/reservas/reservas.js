@@ -16,7 +16,7 @@
             .module('reserva')
             .controller('reservaCtrl', reservaCtrl);
     /* @ngInject */
-    function reservaCtrl($scope, $state, sessionService, reservasService, sitiosService, canchasService, $ionicTabsDelegate, $ionicLoading, $ionicPopup,$ionicSlideBoxDelegate) {
+    function reservaCtrl($scope, $state, sessionService, reservasService,$ionicModal, usuarioService,sitiosService, canchasService, $ionicTabsDelegate, $ionicLoading, $ionicPopup,$ionicSlideBoxDelegate) {
         var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.getSitios = getSitios;
@@ -33,12 +33,33 @@
             vm.canchas = [];
             vm.Cancha = {};
             vm.reservadas = [];
+            vm.telefono ="";
+            vm.imageSrc = "";
             vm.fecha = new Date();
             vm.dias = new Array('', 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sábado');
             vm.horas = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
             vm.altoAgenda = screen.height - 230;
             getSitios();
         });
+        
+        
+              $ionicModal.fromTemplateUrl('image-modal.html', {
+                    scope: $scope,
+                    animation: 'zoom-from-center'
+                }).then(function (modal) {
+                    $scope.modal = modal;
+                });
+
+                $scope.openModal = function (foto) {
+                     vm.imageSrc = foto;
+                    $scope.modal.show();
+                };
+
+                $scope.closeModal = function () {
+                    $scope.modal.hide();
+                };
+                
+                
         Date.prototype.toDateInputValue = (function () {
             var local = new Date(this);
             local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -88,6 +109,13 @@
             
         };
         function getSitios() {
+
+           if(!sessionService.getPhone()){
+               validarTelefono(); 
+           }
+      
+        
+            
             if(!window.localStorage.getItem('sitios')){
               loadingShow('Cargando Sitios...');
             }else{
@@ -231,7 +259,7 @@
 
                     },
                     {
-                        text: 'Si, seguír',
+                        text: '<b>Si, seguír</b>',
                         type: 'button-positive',
                         onTap: function (e) {
                             loadingShow('Procesando reserva...');
@@ -274,6 +302,56 @@
             alertPopup.then(function (res) {
             });
         }
+        
+       function validarTelefono(){
+           var myPopup = $ionicPopup.show({
+          template: '<input type="number" ng-model="vm.telefono" class="box-text">',
+          title: 'Ingresar Teléfono',
+          subTitle: 'Aun no tenemos tu número de teléfono registrado, para continuar es necesario que lo registres.',
+          scope: $scope,
+          buttons: [
+            {text: 'Cancelar',
+                        type: 'button-default',
+                        onTap: function (e) {
+                            message("Proceso Cancelado");
+                            $state.go('app.perfil');
+                }
+            },
+            {
+              text: '<b>Guardar</b>',
+              type: 'button-positive',
+              onTap: function(e) {
+                if (!vm.telefono) {
+                  message("Es nesario ingresar el teléfono");
+                  e.preventDefault();
+                } else {
+                    
+                   loadingShow('Guardando Telefono...');
+                   var object = {
+                       telefono : vm.telefono
+                   }
+                            usuarioService.updatePhone(object).then(success, error);
+                            function success(d) {
+                                $ionicLoading.hide();
+                                message(d.data.message);
+                                    var data = JSON.parse(window.localStorage.getItem('data'));
+                                    data.telefono = vm.telefono;
+                                    window.localStorage.setItem('data',JSON.stringify(data));
+                                    vm.telefono = "";
+                                    return;
+                              
+                            }
+                            function error(error) {
+                                $ionicLoading.hide();
+                                mostrarAlert("Oops..", "tuvimos un problema, intentalo de nuevo");
+                                return;
+                    }
+                }
+              }
+            }
+          ]
+        });
+       }
     }
 })();
 

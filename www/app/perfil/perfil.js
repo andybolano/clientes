@@ -33,7 +33,7 @@
             loadHistorialReservas();
            
             
-            var push = PushNotification.init({
+           var push = PushNotification.init({
                 android: {
                         senderID: "991363187494",
                         vibrate : true,
@@ -134,7 +134,7 @@
         }
         function loadPerfil() {
             vm.Usuario = sessionService.getUser();
-            vm.Usuario.confianza = 50;
+            vm.Usuario.confianza = 0;
             var i = 0;
             $scope.data = {
                 label: 0,
@@ -190,7 +190,7 @@
             $ionicLoading.show({template: msg, noBackdrop: true, duration: 2000});
         }
         function loadReservasPendientes() {
-          
+        
            loadingShow('Cargando reservas...');
            var promisePost =  usuarioService.getReservasPendientes(sessionService.getIdCliente());
             promisePost.then(function (d) {

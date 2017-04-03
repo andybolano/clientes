@@ -11,7 +11,8 @@
             getUser: getUser,
             getToken : getToken,
             getIdCliente:getIdCliente,
-            getEmail : getEmail
+            getEmail : getEmail,
+            getPhone :getPhone
             
         };
         return service;
@@ -44,6 +45,12 @@
            if(window.localStorage.getItem('data') !== null){
                 var data = JSON.parse(window.localStorage.getItem('data'));
                 return data;
+           } 
+        }
+         function getPhone(){
+           if(window.localStorage.getItem('data') !== null){
+                var data = JSON.parse(window.localStorage.getItem('data'));
+                return data.telefono;
            } 
         }
     }

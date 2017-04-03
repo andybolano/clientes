@@ -4,14 +4,15 @@
             .module('app')
             .service('usuarioService', usuarioService);
     /* @ngInject */
-    function usuarioService($http, API_URL, $q, $ionicLoading, $timeout) {
+    function usuarioService($http, API_URL, $q, $ionicLoading, $timeout,sessionService) {
         var service = {
             getUsuario: getUsuario,
             getReservasPendientes: getReservasPendientes,
             getUsuarioServer: getUsuarioServer,
             getReservasHistorial: getReservasHistorial,
             update:update,
-            contacto:contacto
+            contacto:contacto,
+            updatePhone:updatePhone
         };
         return service;
         function contacto(object){
@@ -35,6 +36,20 @@
             var defered = $q.defer();
             var promise = defered.promise;
             $http.put(API_URL + '/cliente/'+usuario.id, usuario).then(success, error);
+            return promise;
+            function success(p) {
+                defered.resolve(p);
+            }
+            function error(error) {
+                defered.reject(error);
+            }
+        }
+        
+        function updatePhone(phone){
+            var defered = $q.defer();
+            var promise = defered.promise;
+            var id = sessionService.getIdCliente();
+            $http.put(API_URL + '/cliente/telefono/'+id, phone).then(success, error);
             return promise;
             function success(p) {
                 defered.resolve(p);

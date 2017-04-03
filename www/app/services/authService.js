@@ -29,6 +29,7 @@
                 }
             }
             function error(error) {
+                alert(JSON.stringify(error))
                 destroyCredenciales();
                 defered.reject(error);
             }
@@ -75,21 +76,24 @@
             return promise;
         }
         function logout() {
-            $ionicLoading.show({template: 'Cerrando Sesion....'});
-            var defered = $q.defer();
+           var defered = $q.defer();
             var promise = defered.promise;
-            $http.post(API_URL + '/logout').then(success, error);
-            return promise;
-            function success(p) {
-
-                destroyCredenciales();
+              destroyCredenciales();
                 setTimeout(function () {
                     $ionicHistory.clearCache();
                     $ionicHistory.clearHistory();
                     $ionicHistory.nextViewOptions({disableBack: true, historyRoot: true});
                     $ionicLoading.hide();
                 }, 30);
-                defered.resolve(p);
+                defered.resolve();
+                
+     
+          
+            $http.post(API_URL + '/logout').then(success, error);
+            return promise;
+            function success(p) {
+
+              
             }
             function error(error) {
                 defered.reject(error);

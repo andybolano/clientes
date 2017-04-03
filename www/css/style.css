@@ -37,6 +37,26 @@
 .slider-pager{
     display: none;
 }
+.pane, .view {
+    background-color:transparent;
+}
+.image-modal {
+  width: 100% !important;
+  height: 100%;
+  top: 0 !important;
+  left: 0 !important;
+}
+.fullscreen-image {
+  max-width: 100%;
+  max-height: 100%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: auto;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
 .degrade-birrias{
     background: rgba(255,119,1,1);
     background: -moz-linear-gradient(-45deg, rgba(255,119,1,1) 0%, rgba(255,119,1,1) 25%, rgba(226,65,70,1) 100%) !important;
@@ -526,13 +546,12 @@ inp input[type="text"] {
     position: absolute;
     color:#FFF;
     background-color:#ff7600;
-    font-size:11px;
     font-family: "fg-demi-cond";
     border-radius:50%;
-    line-height:14px;
-    width:14px;
-    height: 14px;
-    padding-top:2px;
+    padding: 1px 6px;
+    height: auto;
+    font-size: 12px;
+    line-height: 16px;
     margin-top:-3px;
     margin-left:-2px;
 }
@@ -560,3 +579,27 @@ to {-webkit-transform: rotate(360deg);} /*** Estado final de la rotación ***/
    margin-left:35px;
   margin-top: -25px;
 }
+
+/*modal animation*/
+.zoom-from-center {
+    -webkit-transform: translate3d(0, 0, 0) scale(0);
+    transform: translate3d(0, 0, 0) scale(0);
+    opacity: 0;
+}
+
+.zoom-from-center.ng-enter, .zoom-from-center > .ng-enter {
+    -webkit-transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+    transition: all cubic-bezier(0.1, 0.7, 0.1, 1) 400ms;
+}
+
+.zoom-from-center.ng-enter-active, .zoom-from-center > .ng-enter-active {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 1;
+}
+
+.zoom-from-center.ng-leave, .zoom-from-center > .ng-leave {
+    -webkit-transition: all ease-in-out 250ms;
+    transition: all ease-in-out 250ms;
+}
+/*end modal animation*/

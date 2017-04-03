@@ -28,5 +28,12 @@
           </ion-slide>
     </ion-slide-box>
     </ion-content>
+     <script id="image-modal.html" type="text/ng-template">
+        <div style="background-color:rgba(0, 0, 0, 0.8);" class="modal image-modal" ng-click="closeModal()">
+            <ion-pane class="transparent">
+                <img ng-src="{{vm.imageSrc}}" class="fullscreen-image"/>
+            </ion-pane>
+        </div>
+    </script>
 </ion-view>
 
