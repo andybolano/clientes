@@ -30,7 +30,6 @@
             }
             function error(error) {
                 alert(JSON.stringify(error))
-                destroyCredenciales();
                 defered.reject(error);
             }
         }
@@ -78,6 +77,7 @@
         function logout() {
            var defered = $q.defer();
             var promise = defered.promise;
+            var reg_id = localStorage.getItem('regId');
               destroyCredenciales();
                 setTimeout(function () {
                     $ionicHistory.clearCache();
@@ -87,7 +87,7 @@
                 }, 30);
                 defered.resolve();
                 
-     
+            localStorage.setItem('regId',reg_id);
           
             $http.post(API_URL + '/logout').then(success, error);
             return promise;

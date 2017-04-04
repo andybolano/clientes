@@ -44,6 +44,7 @@
     var authResponse = response.authResponse;
     getFacebookProfileInfo(authResponse)
     .then(function(profileInfo) {
+        
         var object = {
             authResponse: authResponse,
             userID: profileInfo.id,
@@ -85,8 +86,7 @@
 
   // This is the fail callback from the login method
   var fbLoginError = function(error){
-        alert(JSON.stringify(error))
-    mostrarAlert("FACEBOOK", 'Problemas al autenticar, tambien puedes registrarte directamente con nuestra app.');
+    mostrarAlert("FACEBOOK", 'Problemas al autenticar,intentalo nuevamente o tambien puedes registrarte directamente con nuestra app.');
     $ionicLoading.hide();
   };
 

@@ -20,6 +20,7 @@
         var vm = this;
         $scope.$on('$ionicView.loaded', function () {
             vm.Usuario = {};
+            vm.invitar_fb = invitar_fb;
             vm.loadPerfil = loadPerfil;
             vm.mostrarAlert = mostrarAlert;
             vm.loadHistorialReservas = loadHistorialReservas;
@@ -31,7 +32,7 @@
             vm.historial = [];
             $scope.data = {};
             loadHistorialReservas();
-           
+            
             
            var push = PushNotification.init({
                 android: {
@@ -63,7 +64,30 @@
             
         });
 
-          
+        function invitar_fb(){
+           facebookConnectPlugin.appInvite(
+                {
+                    url: "https://birriassoccer.com/app_links/index.html",
+                    picture: "https://birriassoccer.com/invite_facebook.png"
+                },
+                function(obj){
+                    if(obj) {
+                        if(obj.completionGesture == "cancel") {
+                          message("En otra ocasion pordras inviar a tus amigos, para que puedan obtener los beneficios que solo birrias ofrece.");
+                        } else {
+                            message("Ahora tus amigos podran obtener los beneficios que birrias ofrece.");
+                        }
+                    } else {
+                       message("Chico malo!")
+                    }
+                },
+                function(obj){
+                    // error
+                    console.log(obj);
+                }
+            ); 
+        }  
+        
         function irReservar() {
             $state.go('app.reserva');
         }
