@@ -67,7 +67,7 @@
         function invitar_fb(){
            facebookConnectPlugin.appInvite(
                 {
-                    url: "https://birriassoccer.com/app_links/index.html",
+                    url: "https://fb.me/1862870033981775",
                     picture: "https://birriassoccer.com/invite_facebook.png"
                 },
                 function(obj){
@@ -78,7 +78,7 @@
                             message("Ahora tus amigos podran obtener los beneficios que birrias ofrece.");
                         }
                     } else {
-                       message("Chico malo!")
+                       message("Chico malo!");
                     }
                 },
                 function(obj){

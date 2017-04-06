@@ -29,7 +29,6 @@
                 }
             }
             function error(error) {
-                alert(JSON.stringify(error))
                 defered.reject(error);
             }
         }
