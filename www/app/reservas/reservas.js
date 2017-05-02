@@ -325,10 +325,9 @@
                   message("Es nesario ingresar el teléfono");
                   e.preventDefault();
                 } else {
-                    
                    loadingShow('Guardando Telefono...');
                    var object = {
-                       telefono : vm.telefono
+                       telefono : vm.telefono.toString()
                    }
                             usuarioService.updatePhone(object).then(success, error);
                             function success(d) {
@@ -338,8 +337,7 @@
                                     data.telefono = vm.telefono;
                                     window.localStorage.setItem('data',JSON.stringify(data));
                                     vm.telefono = "";
-                                    return;
-                              
+                                    return;    
                             }
                             function error(error) {
                                 $ionicLoading.hide();
