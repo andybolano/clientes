@@ -25,11 +25,13 @@
           <input type="text" ng-model="vm.Usuario.apellidos" class="box-text user" placeholder="Apellidos">
           <input type="text" ng-model="vm.Usuario.telefono" class="box-text phone" placeholder="Teléfono">
           <br>
+          <div ng-if="!vm.isfacebook">
           <p class="p">Información de Acceso</p>
           <input type="text" ng-model="vm.Usuario.email" class="box-text email" >
           <input type="password" ng-model="vm.Usuario.clave" class="box-text pass" placeholder="Contraseña actual">
           <input type="password" ng-model="vm.Usuario.newClave" class="box-text pass" placeholder="Contraseña nueva">
           <br>
+          </div>
           <button class="button btn-secundary button-assertive" style="width: 100%" ng-click="vm.update()">Guardar Cambios</button>
         </div>
     </ion-content>

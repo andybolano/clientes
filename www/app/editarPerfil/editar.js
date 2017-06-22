@@ -24,6 +24,12 @@
             vm.Usuario.email = sessionService.getEmail();
             vm.buscarAlbum = buscarAlbum;
             vm.update = update;
+            vm.isfacebook = true;
+            
+            var info = JSON.parse(localStorage.getItem('data'));
+            if(info.facebookId == '0' || info.facebookId == 'NULL'){
+                vm.isfacebook = false;
+            }
         });
         $scope.$on("$ionicView.beforeEnter", function (event, data) {
             $scope.popover.hide();
@@ -70,22 +76,37 @@
         
 
         function update(){
-             if (vm.Usuario.clave === undefined || vm.Usuario.nombres === undefined || vm.Usuario.apellidos === undefined || vm.Usuario.email === undefined || vm.Usuario.telefono === undefined) {
+             if ( vm.Usuario.nombres === undefined || vm.Usuario.apellidos === undefined || vm.Usuario.telefono === undefined) {
                 message("Faltan campos por digilenciar");
                 return 0;
             }
-            if(vm.Usuario.newClave === undefined || vm.Usuario.newClave === ""){
-                vm.Usuario.newClave = 'false';
+            if(!vm.isfacebook){
+                if( vm.Usuario.clave === undefined || vm.Usuario.email === undefined){
+                     message("Ingresa tu correo y contraseña");
+                     return 0;
+                }
+                if(vm.Usuario.newClave === undefined || vm.Usuario.newClave === ""){
+                    vm.Usuario.newClave = 'false';
+                }
+                
+                vm.Usuario.facebook = 'false';
+            }else{
+             vm.Usuario.facebook = 'true';
             }
+            
             usuarioService.update(vm.Usuario).then(success, error);
             function success(p) {
+               
              message(p.data.message);
              window.localStorage.setItem('data', JSON.stringify(p.data.request));
-             window.localStorage.setItem('email', p.data.email);
-              vm.Usuario.clave = "";
-              vm.Usuario.newClave = "";
+             if(!vm.isfacebook){
+                window.localStorage.setItem('email', p.data.email);
+                 vm.Usuario.clave = "";
+                 vm.Usuario.newClave = "";
+                }
             }
             function error(error) {
+               
                 if (error.status === 409) {
                     mostrarAlert("Fallo en el Registro", "Parece que " + vm.usuario.email + " pertenece a una cuenta ya registrada ");
                     vm.usuario = {};
