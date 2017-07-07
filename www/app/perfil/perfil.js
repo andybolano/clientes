@@ -41,7 +41,12 @@
                         sound:true,
                         alert: true,
                         badge: true
-                }
+                },
+	ios: {
+		alert: "true",
+		badge: "true",
+		sound: "true"
+	},
             });
             
            push.on('notification', function(data) {
